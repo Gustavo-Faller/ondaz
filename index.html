@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Sites, portfólios e redes sociais para negócios, profissionais e instituições.">
+<meta name="theme-color" content="#0B0F1A">
+<meta property="og:title" content="Ondaz Studio">
+<meta property="og:description" content="Sites, portfólios e redes sociais. Sua marca no ar, do jeito certo.">
+<meta property="og:image" content="og.png">
+<meta property="og:type" content="website">
+<link rel="icon" href="icon-512.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Ondaz Studio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Nunito+Sans:wght@400;600;700&family=Cormorant+Garamond:wght@600&family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Jost:wght@400;500&display=swap">
+<style>
+/* Layout: coluna estreita de celular. Tela inicial só com os três botões; projetos, cada cliente e serviços abrem como telas próprias com botão de voltar. Visual único escuro da marca Ondaz. */
+:root{
+  --noite:#0B0F1A; --grafite:#141B2D; --linha:#232C44;
+  --neon:#C6FF3D; --nevoa:#F2F5FA; --cinza:#9AA3B5; --texto2:#C9D0DD;
+  --display:'Space Grotesk',ui-sans-serif,system-ui,sans-serif;
+  --body:'Inter',ui-sans-serif,system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  /* Saracura */
+  --sar1:#78587f; --sar2:#9971a8; --sar3:#c1d3b9; --sar4:#eee3c2;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{background:var(--noite)}
+body{background:var(--noite);color:var(--nevoa);font-family:var(--body);font-size:16px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 56px}
+.wrap{max-width:460px;margin:0 auto}
+.tela{display:flex;flex-direction:column;gap:28px}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--neon);outline-offset:3px;border-radius:8px}
+
+.topo{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;padding-top:24px}
+.avatar{width:104px;height:104px;border-radius:50%;background:var(--grafite);display:grid;place-items:center;box-shadow:0 0 0 1px var(--linha)}
+.nome{font-family:var(--display);font-weight:700;font-size:42px;letter-spacing:-.04em;line-height:1;margin:8px 0 0}
+.nome span{color:var(--neon)}
+.handle{font-family:var(--mono);font-size:13px;color:var(--cinza);letter-spacing:.04em}
+.bio{margin:0;color:var(--texto2);max-width:34ch;text-wrap:balance}
+
+.links{display:flex;flex-direction:column;gap:12px}
+.btn{display:flex;align-items:center;gap:14px;min-height:62px;padding:14px 18px;border-radius:16px;text-decoration:none;font-weight:600;font-size:16px;text-align:left;width:100%;cursor:pointer;
+  background:var(--grafite);border:1px solid var(--linha);transition:transform .15s ease,border-color .15s ease}
+.btn:hover{border-color:var(--cinza);transform:translateY(-1px)}
+.btn svg{flex-shrink:0}
+.btn .seta{margin-left:auto;color:var(--cinza)}
+.btn.principal{background:var(--neon);color:var(--noite);border-color:var(--neon)}
+.btn.principal .seta{color:var(--noite)}
+.btn small{display:block;font-weight:400;font-size:13px;color:var(--cinza)}
+
+.barra{display:flex;align-items:center;gap:12px}
+.voltar{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 14px 0 8px;border-radius:999px;border:1px solid var(--linha);background:transparent;cursor:pointer;font-size:14px;font-weight:500}
+.voltar:hover{border-color:var(--cinza)}
+.marca-mini{margin-left:auto;font-family:var(--display);font-weight:700;letter-spacing:-.04em;font-size:20px}
+.marca-mini span{color:var(--neon)}
+.rotulo{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--cinza);text-transform:uppercase}
+h2{font-family:var(--display);font-weight:700;font-size:30px;letter-spacing:-.03em;margin:0;line-height:1.1;text-wrap:balance}
+h3{font-family:var(--display);font-size:21px;margin:0}
+.cab{display:flex;flex-direction:column;gap:8px}
+.cab p{margin:0;color:var(--texto2)}
+
+/* lista de clientes */
+.cliente{display:flex;flex-direction:column;border-radius:20px;overflow:hidden;background:var(--grafite);border:1px solid var(--linha);cursor:pointer;text-align:left;padding:0;width:100%;transition:border-color .15s ease}
+.cliente:hover{border-color:var(--cinza)}
+.cliente .capa{aspect-ratio:16/9;max-width:100%;display:flex;align-items:flex-end;padding:18px}
+.cliente .info{padding:14px 18px 16px;display:flex;align-items:center;gap:12px}
+.cliente .info div{min-width:0}
+.cliente strong{display:block;font-size:17px}
+.cliente span.tipo{font-size:14px;color:var(--cinza)}
+.cliente .seta{margin-left:auto;color:var(--cinza);flex-shrink:0}
+
+/* Saracura */
+.capa-sar{background:var(--sar1);color:var(--sar4);position:relative;overflow:hidden}
+.capa-sar::after{content:"";position:absolute;right:-40px;top:-40px;width:180px;height:180px;border-radius:50%;background:var(--sar2);opacity:.6}
+.capa-sar::before{content:"";position:absolute;right:40px;bottom:-60px;width:140px;height:140px;border-radius:50%;background:var(--sar3);opacity:.5}
+.logo-sar{position:relative;z-index:1;font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:36px;line-height:1}
+.logo-sar small{display:block;font-family:'Nunito Sans',system-ui,sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;margin-top:6px;font-weight:700}
+
+.bloco{display:flex;flex-direction:column;gap:12px}
+.paleta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.cor{border-radius:12px;aspect-ratio:3/4;max-width:100%;display:flex;align-items:flex-end;padding:8px;font-family:var(--mono);font-size:11px}
+.tipos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.tipo-card{background:var(--sar4);color:var(--sar1);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:4px}
+.tipo-card b{font-size:26px;line-height:1}
+.tipo-card span{font-family:var(--mono);font-size:11px;color:#5d4563}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+.tags li{font-size:13px;padding:4px 10px;border:1px solid var(--linha);border-radius:999px;color:var(--cinza)}
+
+.carrossel{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;margin-inline:-2px}
+.slide{flex:0 0 78%;max-width:300px;aspect-ratio:4/5;border-radius:14px;scroll-snap-align:start;padding:20px;display:flex;flex-direction:column;justify-content:space-between;font-family:'Nunito Sans',system-ui,sans-serif}
+.slide .tit{font-family:'Cormorant Garamond',Georgia,serif;font-size:30px;line-height:1.05;font-weight:600;text-wrap:balance}
+.slide p{margin:0;font-size:14px;line-height:1.45}
+.slide .pe{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700}
+.dica{font-size:13px;color:var(--cinza)}
+
+/* Cunha */
+.capa-cunha{background:#08090b;color:#f2f2f2;justify-content:center;align-items:center}
+.capa-cunha img{height:100%;max-height:170px;width:auto;max-width:100%;object-fit:contain;display:block}
+.capa.capa-cunha img{position:absolute;inset:8%;width:84%;height:84%;max-height:none}
+.logo-cunha{font-family:var(--display);font-weight:700;font-size:30px;letter-spacing:.02em;line-height:1}
+.logo-cunha small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.3em;margin-top:6px;color:#bdbdbd}
+.galeria{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px;scrollbar-width:thin}
+.galeria figure{margin:0;flex:0 0 86%;scroll-snap-align:start;display:flex;flex-direction:column;gap:6px}
+.galeria img{width:100%;max-width:100%;height:auto;border-radius:14px;border:1px solid var(--linha);display:block;background:var(--grafite)}
+.galeria figcaption{font-size:13px;color:var(--cinza)}
+
+.trabalho{display:flex;align-items:center;gap:14px;padding:12px;border-radius:16px;background:var(--grafite);border:1px solid var(--linha);text-decoration:none;transition:border-color .15s ease}
+.trabalho:hover{border-color:var(--cinza)}
+.trabalho .mini{flex-shrink:0;width:72px;height:72px;border-radius:12px;display:grid;place-items:center;text-align:center;padding:6px;font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:14px;line-height:1.1}
+.trabalho .txt{display:flex;flex-direction:column;gap:2px;min-width:0}
+.trabalho strong{font-size:15px}
+.trabalho .txt span{font-size:13px;color:var(--cinza)}
+.trabalho .seta{margin-left:auto;flex-shrink:0;color:var(--cinza)}
+.car{display:flex;flex-direction:column;gap:10px}
+.car-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;scrollbar-width:none;container-type:inline-size;border-radius:16px}
+.car-track::-webkit-scrollbar{display:none}
+.sl-img{flex:0 0 100%;width:100%;max-width:100%;height:auto;aspect-ratio:4/5;scroll-snap-align:start;border-radius:16px;display:block;object-fit:cover}
+.sl{flex:0 0 100%;aspect-ratio:1/1;max-width:100%;scroll-snap-align:start;border-radius:16px;padding:8cqw 7.5cqw;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;font-family:'Nunito Sans',system-ui,sans-serif;line-height:1.45}
+.sl > *{position:relative}
+.sl .lf{position:absolute;border-radius:50% 0 50% 50%;opacity:.35}
+.sl p{margin:0}
+.sl h3{font-family:'Fraunces',Georgia,serif;font-weight:600;line-height:1.05;margin:0;font-size:6.6cqw}
+.sl .h1{font-size:9cqw}
+.sl .ey{font-size:3cqw;opacity:.75;margin-bottom:1.2cqw}
+.sl .sub{font-size:3.7cqw;margin-top:3.2cqw;max-width:88%}
+.sl .br{font-family:'Fraunces',Georgia,serif;font-size:3cqw}
+.sl ul{margin:3.2cqw 0 0;padding:0;list-style:none;font-size:3.6cqw}
+.sl ul li{padding:1.1cqw 0;border-top:1px solid rgba(238,227,194,.25)}
+.sl ul li:first-child{border-top:none}
+.e1{background:var(--sar4);color:var(--sar1)}
+.e2{background:var(--sar3);color:var(--sar1)}
+.e3{background:var(--sar1);color:var(--sar4)}
+.e4{background:var(--sar2);color:#fffdf8}
+.m,.m-cover{background:#fbf8ef;color:#4a3650;font-family:'Jost',system-ui,sans-serif}
+.m h3,.m-cover h3{color:var(--sar1);font-weight:500}
+.m .ey{color:var(--sar2);opacity:1}
+.m-cover{background:linear-gradient(180deg,var(--sar3) 0%,var(--sar4) 55%);align-items:center;justify-content:center;text-align:center;padding:6cqw}
+.m-cover img{width:44%;border-radius:3cqw;box-shadow:0 2.4cqw 6cqw rgba(74,54,80,.25);margin-bottom:4cqw}
+.m-cover .sub{margin-inline:auto;color:#4a3650}
+.m .tg{display:flex;flex-wrap:wrap;gap:1.8cqw}
+.m .tg span{font-size:3cqw;padding:1.4cqw 2.8cqw;border-radius:999px;background:var(--sar3);color:var(--sar1)}
+.m ul.pt li{border:0;padding:1.2cqw 0 1.2cqw 4.6cqw;position:relative}
+.m ul.pt li::before{content:"";position:absolute;left:0;top:2.6cqw;width:1.9cqw;height:1.9cqw;border-radius:50%;background:var(--sar3);border:.5cqw solid var(--sar2)}
+.m-cta{background:var(--sar1);color:var(--sar4);font-family:'Jost',system-ui,sans-serif}
+.m-cta .ey{color:var(--sar3);opacity:1}
+.m-cta h3{font-weight:500}
+.m-cta .dose{font-family:'Fraunces',Georgia,serif;font-size:4.6cqw;margin-top:4cqw;color:var(--sar3)}
+.dots{display:flex;justify-content:center;gap:7px}
+.dots i{width:7px;height:7px;border-radius:4px;background:var(--cinza);opacity:.4;transition:width .2s ease}
+.dots i.on{width:20px;opacity:1;background:var(--neon)}
+/* serviços */
+.servico{padding:20px;border-radius:16px;background:var(--grafite);display:flex;flex-direction:column;gap:8px}
+.servico h3{display:flex;align-items:center;gap:10px}
+.servico p{margin:0;color:var(--texto2);font-size:15px}
+
+.cta-fim{margin-top:4px}
+.rodape{text-align:center;font-family:var(--mono);font-size:12px;color:var(--cinza);margin-top:40px}
+@media (prefers-reduced-motion:reduce){.btn,.cliente{transition:none}.btn:hover{transform:none}}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+  <!-- TELA INICIAL -->
+  <section class="tela" id="tela-inicio" aria-label="Início">
+    <header class="topo">
+      <div class="avatar">
+        <svg width="74" height="74" viewBox="0 0 120 120" role="img" aria-label="Símbolo da Ondaz"><path d="M24 62 C34 40 46 40 54 60 C62 80 74 80 84 58" fill="none" stroke="#F2F5FA" stroke-width="12" stroke-linecap="round"/><circle cx="96" cy="42" r="9" fill="#C6FF3D"/></svg>
+      </div>
+      <h1 class="nome">ondaz<span>.</span></h1>
+      <div class="handle">@ondaz.studio</div>
+      <p class="bio">Sites, portfólios e redes sociais para negócios, profissionais e instituições. Sua marca no ar, do jeito certo.</p>
+    </header>
+    <nav class="links" aria-label="Links principais">
+      <a class="btn principal" href="https://wa.me/5551998948864?text=Ol%C3%A1!%20Vim%20pelo%20Instagram%20e%20quero%20um%20or%C3%A7amento." target="_blank" rel="noopener">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>
+        Falar comigo no WhatsApp
+        <svg class="seta" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+      </a>
+      <button class="btn" type="button" data-ir="projetos">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C6FF3D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        <span>Ver clientes e projetos</span>
+        <svg class="seta" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+      <button class="btn" type="button" data-ir="servicos">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C6FF3D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg>
+        <span>Serviços que eu ofereço</span>
+        <svg class="seta" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+    </nav>
+    <footer class="rodape">ondaz. · sites, portfólios e social</footer>
+  </section>
+
+  <!-- PROJETOS -->
+  <section class="tela" id="tela-projetos" aria-label="Clientes e projetos" hidden>
+    <div class="barra">
+      <button class="voltar" type="button" data-ir="inicio"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>Voltar</button>
+      <span class="marca-mini">ondaz<span>.</span></span>
+    </div>
+    <div class="cab">
+      <span class="rotulo">Clientes e projetos</span>
+      <h2>Marcas que já estão no ar</h2>
+      <p>Toque em um cliente para ver o trabalho.</p>
+    </div>
+    <button class="cliente" type="button" data-ir="saracura">
+      <div class="capa" style="padding:0;background:#785a7f;position:relative"><img src="img/saracura-logo-crop.png" alt="Logo Saracura Farmácia de Manipulação" width="800" height="428" style="position:absolute;inset:12%;width:76%;height:76%;object-fit:contain;display:block"></div>
+      <div class="info"><div><strong>Farmácia Saracura</strong><span class="tipo">Carrosséis para Instagram</span></div>
+        <svg class="seta" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></div>
+    </button>
+    <button class="cliente" type="button" data-ir="cunha">
+      <div class="capa capa-cunha" style="padding:12px;position:relative"><img src="img/cunha-logo.png" alt="Logo Cunha Importados e Acessórios" width="392" height="392"></div>
+      <div class="info"><div><strong>Cunha Importados</strong><span class="tipo">Site e catálogo de iPhones</span></div>
+        <svg class="seta" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></div>
+    </button>
+  </section>
+
+  <!-- SARACURA -->
+  <section class="tela" id="tela-saracura" aria-label="Projeto Farmácia Saracura" hidden>
+    <div class="barra">
+      <button class="voltar" type="button" data-ir="projetos"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>Projetos</button>
+      <span class="marca-mini">ondaz<span>.</span></span>
+    </div>
+    <div style="border-radius:20px;overflow:hidden;background:#785a7f;display:flex;justify-content:center">
+      <img src="img/saracura-logo-crop.png" alt="Logo Saracura Farmácia de Manipulação" width="800" height="428" style="width:80%;max-width:340px;height:auto;display:block;margin:32px 0">
+    </div>
+    <div class="cab">
+      <span class="rotulo">Cachoeira do Sul · RS</span>
+      <h2>Farmácia Saracura</h2>
+      <p>Carrosséis para o Instagram de uma farmácia de manipulação familiar, sempre dentro da identidade visual da marca.</p>
+      <ul class="tags"><li>Carrosséis</li><li>Instagram</li></ul>
+    </div>
+
+    <div class="bloco">
+      <span class="rotulo">Carrossel · Xampus naturais · arraste para o lado</span>
+      <div class="car">
+        <div class="car-track" tabindex="0" aria-label="Carrossel Xampus naturais, 9 cards">
+          <img class="sl-img" src="img/xampus-1.jpg" alt="Capa: Xampus naturais, da planta ao fio" width="800" height="1000" loading="eager">
+          <img class="sl-img" src="img/xampus-2.jpg" alt="Xampu de Alecrim, fios mais fortes" width="800" height="1000" loading="lazy">
+          <img class="sl-img" src="img/xampus-3.jpg" alt="Xampu de Babosa, hidratação intensa" width="800" height="1000" loading="lazy">
+          <img class="sl-img" src="img/xampus-4.jpg" alt="Xampu de Calêndula, couro cabeludo em paz" width="800" height="1000" loading="lazy">
+          <img class="sl-img" src="img/xampus-5.jpg" alt="Xampu de Camomila, brilho para os claros" width="800" height="1000" loading="lazy">
+          <img class="sl-img" src="img/xampus-6.jpg" alt="Xampu de Jaborandi, crescimento e força" width="800" height="1000" loading="lazy">
+          <img class="sl-img" src="img/xampus-7.jpg" alt="Xampu Anti-piolho, proteção que acalma" width="800" height="1000" loading="lazy">
+          <img class="sl-img" src="img/xampus-8.jpg" alt="Guia rápido: qual é o seu xampu" width="800" height="1000" loading="lazy">
+          <img class="sl-img" src="img/xampus-9.jpg" alt="Encontre o seu na Saracura, contatos da farmácia" width="800" height="1000" loading="lazy">
+        </div>
+        <div class="dots" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <div class="bloco">
+      <span class="rotulo">Carrossel · Chás funcionais · arraste para o lado</span>
+      <div class="car">
+        <div class="car-track" tabindex="0" aria-label="Carrossel Chás funcionais, 8 cards">
+          <img class="sl-img" src="img/chas-1.jpg" alt="Capa: Chás funcionais, blends de plantas medicinais" width="800" height="1000" loading="lazy">
+          <img class="sl-img" src="img/chas-2.jpg" alt="O que são os chás funcionais" width="800" height="1000" loading="lazy">
+          <img class="sl-img" src="img/chas-3.jpg" alt="Calma e sono: Calmante e Ansiedade e Depressão" width="800" height="1000" loading="lazy">
+          <img class="sl-img" src="img/chas-4.jpg" alt="Digestão, fígado e glicose" width="800" height="1000" loading="lazy">
+          <img class="sl-img" src="img/chas-5.jpg" alt="Peso e apetite: Controle Metabólico e Seca Barriga 1" width="800" height="1000" loading="lazy">
+          <img class="sl-img" src="img/chas-6.jpg" alt="Líquidos e circulação: Seca Barriga 2 e Lipedema" width="800" height="1000" loading="lazy">
+          <img class="sl-img" src="img/chas-7.jpg" alt="Imunidade, amamentação e banho" width="800" height="1000" loading="lazy">
+          <img class="sl-img" src="img/chas-8.jpg" alt="Conheça nossos chás funcionais, contatos da farmácia" width="800" height="1000" loading="lazy">
+        </div>
+        <div class="dots" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <a class="btn principal cta-fim" href="https://wa.me/5551998948864?text=Ol%C3%A1!%20Vi%20o%20projeto%20da%20Saracura%20e%20quero%20algo%20parecido%20para%20minha%20marca." target="_blank" rel="noopener">
+      Quero algo assim para minha marca
+      <svg class="seta" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+    </a>
+  </section>
+
+  <!-- CUNHA -->
+  <section class="tela" id="tela-cunha" aria-label="Projeto Cunha Importados" hidden>
+    <div class="barra">
+      <button class="voltar" type="button" data-ir="projetos"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>Projetos</button>
+      <span class="marca-mini">ondaz<span>.</span></span>
+    </div>
+    <div class="capa-cunha" style="border-radius:20px;padding:20px;min-height:220px;display:flex">
+      <img src="img/cunha-logo.png" alt="Logo Cunha Importados e Acessórios" width="392" height="392" style="max-height:200px">
+    </div>
+    <div class="cab">
+      <span class="rotulo">Cliente</span>
+      <h2>Cunha Importados</h2>
+      <p>Vitrine online de iPhones novos, seminovos e acessórios, com busca, fotos em 3D dos aparelhos, páginas de produto e consulta direta pelo WhatsApp.</p>
+      <ul class="tags"><li>Site</li><li>Catálogo</li><li>WhatsApp</li></ul>
+    </div>
+    <a class="trabalho" href="https://cunha-importadoss.vercel.app/" target="_blank" rel="noopener">
+      <span class="mini" style="background:#08090b;padding:4px"><img src="img/cunha-logo.png" alt="" width="64" height="64" style="width:64px;height:64px;object-fit:contain"></span>
+      <span class="txt"><strong>Ver o site funcionando</strong><span>cunha-importadoss.vercel.app</span></span>
+      <svg class="seta" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+    </a>
+    <div class="bloco">
+      <span class="rotulo">Telas do site · arraste para o lado</span>
+      <div class="galeria" tabindex="0" aria-label="Telas do site da Cunha Importados">
+        <figure><img src="img/cunha-1.jpg" alt="Tela inicial do site da Cunha Importados com um iPhone em 3D" width="1200" height="748" loading="lazy"><figcaption>Tela inicial com iPhone em 3D</figcaption></figure>
+        <figure><img src="img/cunha-2.jpg" alt="Catálogo de iPhones seminovos com fotos reais de cada unidade" width="1200" height="863" loading="lazy"><figcaption>Catálogo com fotos reais de cada aparelho</figcaption></figure>
+        <figure><img src="img/cunha-3.jpg" alt="Seção de formas de pagamento e apresentação do vendedor" width="1200" height="866" loading="lazy"><figcaption>Formas de pagamento e quem atende</figcaption></figure>
+      </div>
+    </div>
+    <a class="btn principal cta-fim" href="https://wa.me/5551998948864?text=Ol%C3%A1!%20Vi%20o%20projeto%20da%20Cunha%20Importados%20e%20quero%20algo%20parecido%20para%20minha%20marca." target="_blank" rel="noopener">
+      Quero algo assim para minha marca
+      <svg class="seta" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+    </a>
+  </section>
+
+  <!-- SERVIÇOS -->
+  <section class="tela" id="tela-servicos" aria-label="Serviços" hidden>
+    <div class="barra">
+      <button class="voltar" type="button" data-ir="inicio"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>Voltar</button>
+      <span class="marca-mini">ondaz<span>.</span></span>
+    </div>
+    <div class="cab">
+      <span class="rotulo">Serviços</span>
+      <h2>O que eu faço pela sua marca</h2>
+    </div>
+    <article class="servico">
+      <h3><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C6FF3D" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg>Sites</h3>
+      <p>Sites rápidos e bonitos, que funcionam bem no celular e ajudam o cliente a encontrar você.</p>
+      <ul class="tags"><li>Site institucional</li><li>Página de vendas</li><li>Cardápio e catálogo</li><li>Painel administrativo</li></ul>
+    </article>
+    <article class="servico">
+      <h3><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C6FF3D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Portfólios</h3>
+      <p>Seu trabalho organizado num só link, para mostrar a clientes e fechar mais projetos.</p>
+      <ul class="tags"><li>Portfólio online</li><li>Apresentação em PDF</li><li>Página de link na bio</li></ul>
+    </article>
+    <article class="servico">
+      <h3><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C6FF3D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg>Redes sociais</h3>
+      <p>Identidade visual, posts e carrosséis com a cara da sua marca, com frequência.</p>
+      <ul class="tags"><li>Logo e identidade</li><li>Manual de marca</li><li>Posts e carrosséis</li><li>Otimização de perfil</li></ul>
+    </article>
+    <a class="btn principal cta-fim" href="https://wa.me/5551998948864?text=Ol%C3%A1!%20Vim%20pelo%20Instagram%20e%20quero%20um%20or%C3%A7amento." target="_blank" rel="noopener">
+      Pedir orçamento no WhatsApp
+      <svg class="seta" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+    </a>
+  </section>
+
+</div>
+
+<script>
+(function(){
+  var telas=['inicio','projetos','saracura','cunha','servicos'];
+  function mostrar(nome, rolar){
+    if(telas.indexOf(nome)<0) nome='inicio';
+    telas.forEach(function(t){ document.getElementById('tela-'+t).hidden = (t!==nome); });
+    try{ history.replaceState(null,'', nome==='inicio' ? location.pathname : '#'+nome); }catch(e){}
+    if(rolar!==false) window.scrollTo(0,0);
+    var alvo=document.querySelector('#tela-'+nome+' h2, #tela-'+nome+' h1');
+    if(alvo && rolar!==false){ alvo.setAttribute('tabindex','-1'); try{ alvo.focus({preventScroll:true}); }catch(e){} }
+  }
+  document.addEventListener('click',function(ev){
+    var b=ev.target.closest('[data-ir]');
+    if(b){ ev.preventDefault(); mostrar(b.getAttribute('data-ir')); }
+  });
+  var inicial=(location.hash||'').replace('#','');
+  mostrar(inicial||'inicio', false);
+})();
+document.querySelectorAll('.car').forEach(function(c){
+  var t=c.querySelector('.car-track'), d=c.querySelector('.dots'), n=t.children.length;
+  for(var i=0;i<n;i++){ d.appendChild(document.createElement('i')); }
+  function upd(){ var k=Math.round(t.scrollLeft/(t.clientWidth+10)); [].forEach.call(d.children,function(x,j){x.classList.toggle('on',j===k);}); }
+  t.addEventListener('scroll',upd,{passive:true}); upd();
+});
+</script>
+
+</body>
+</html>
