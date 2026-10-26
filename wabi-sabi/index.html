@@ -7,7 +7,7 @@
 <meta name="description" content="Cardápio digital da Wabi Sabi Culinária Japonesa. Monte seu pedido e envie pelo WhatsApp.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Tenor+Sans&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Tenor+Sans&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500&text=%E4%BE%98%E5%AF%82&display=swap">
 <style>
 /* Layout: capa preta com o monograma em traço fino da marca, barra fixa, lista como carta de restaurante, carrinho em gaveta */
@@ -211,6 +211,62 @@ section.cat > header span{color:var(--mist);font-size:13px;flex:none}
 .mood span{color:var(--mist);font-size:11.5px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;position:relative}
 @media (min-width:640px){.mgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));overflow:visible}.mood{flex:none}}
 
+/* revisão de direção de arte */
+:root{--band:#131312}
+.hero{text-align:left}
+.hero .wrap.hgrid{max-width:1080px;padding-block:28px 40px;display:grid;grid-template-columns:1fr;gap:28px;justify-items:stretch;align-items:center}
+.htext{display:grid;gap:18px;justify-items:start;min-width:0}
+.hero .logo{width:min(250px,64vw);background-position:left center}
+.hero h1{font-size:clamp(36px,8.5vw,60px);font-weight:600;line-height:1.02;letter-spacing:-.01em;max-width:13ch}
+.hero .lede{font-size:14.5px;max-width:40ch}
+.hero .meta{justify-content:flex-start}
+.himg{margin:0 calc(-1 * max(16px,env(safe-area-inset-right,0px))) 0 22%;aspect-ratio:4/5;max-width:100%;background:var(--ink-2) center/cover;border-radius:4px 0 0 4px;position:relative;overflow:hidden}
+.himg::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,.5),transparent 45%)}
+@media (min-width:760px){
+ .hero .wrap.hgrid{grid-template-columns:1.15fr .85fr;gap:48px;padding-block:56px 64px}
+ .himg{margin:0 0 0 0;border-radius:4px;aspect-ratio:3/4;transform:translateY(24px)}
+}
+/* contraste de títulos */
+h2{font-weight:700!important;font-size:clamp(38px,8vw,56px)!important;line-height:1!important;letter-spacing:-.01em}
+section.cat > header h2{font-size:clamp(30px,6.5vw,42px)!important}
+.dish h2{font-size:clamp(32px,7vw,42px)!important}
+.item h3{font-size:22px!important}
+.item p,.gcard p,.dict dd{font-size:13px;line-height:1.5}
+.fhead{align-items:center}
+.slide .cap small{display:none}
+.slide .cap h3{font-weight:700}
+/* ritmo de fundos */
+.moods,.guide,section.cat:nth-of-type(even){background:var(--band);box-shadow:0 0 0 100vmax var(--band);clip-path:inset(0 -100vmax)}
+.moods{padding-block:34px 34px;margin-top:34px}
+.guide{border-top:0!important;margin-top:0!important}
+section.cat{padding-block:40px 18px}
+/* ocasiões: tamanhos variados no computador */
+@media (min-width:640px){
+ .mgrid{grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:92px;grid-auto-flow:dense}
+ .mood:nth-child(1){grid-column:span 2;grid-row:span 2;justify-content:flex-end}
+ .mood:nth-child(1) b{font-size:32px}
+ .mood:nth-child(1) i{font-size:150px}
+ .mood:nth-child(7){grid-column:span 2}
+}
+/* guia: bento com tamanhos variados */
+.ggrid{grid-auto-flow:dense}
+.gcard:nth-child(1),.gcard:nth-child(6),.gcard:nth-child(9){grid-column:span 2}
+.gcard:nth-child(1) .gart,.gcard:nth-child(6) .gart{aspect-ratio:16/9}
+.gcard:nth-child(1) h3,.gcard:nth-child(6) h3{font-size:32px}
+@media (min-width:640px){
+ .ggrid{grid-template-columns:repeat(4,minmax(0,1fr))}
+ .gcard:nth-child(1){grid-column:span 2;grid-row:span 2}
+ .gcard:nth-child(1) .gart{aspect-ratio:auto;flex:1;min-height:220px}
+ .gcard:nth-child(6){grid-column:span 2}
+ .gcard:nth-child(9){grid-column:span 4}
+ .gcard:nth-child(9) .gart{aspect-ratio:21/9}
+}
+/* imagens surgindo */
+.reveal{opacity:0;transform:scale(1.05);filter:blur(6px);transition:opacity .9s ease,transform 1.3s cubic-bezier(.2,.8,.2,1),filter .9s ease}
+.reveal.in{opacity:1;transform:none;filter:none}
+.himg.reveal.in{transform:none}
+@media (min-width:760px){.himg.reveal.in{transform:translateY(24px)}}
+
 /* abertura */
 #intro{position:fixed;inset:0;z-index:100;background:var(--ink);display:grid;place-items:center;text-align:center;padding:24px;transition:transform .9s cubic-bezier(.7,0,.2,1),opacity .9s}
 #intro.out{transform:translateY(-100%);opacity:.6}
@@ -298,18 +354,19 @@ footer a{color:var(--mist)}
 <div class="deco deco-r" aria-hidden="true"></div>
 <div class="deco deco-r2" aria-hidden="true"><span class="vt">Culinária japonesa</span></div>
 <header class="hero">
-  <div class="wrap">
-    <div class="logo" id="logo" role="img" aria-label="Logo Wabi Sabi"></div>
-    <p class="word" hidden>Wabi Sabi</p>
-    <span class="rule"></span>
-    <h1>A beleza do simples, feita peça por peça.</h1>
-    <p class="lede">Combinados, temakis, hots e pratos quentes. Conheça cada prato, veja os preços e, quando decidir, chame a gente no WhatsApp.</p>
-    <div class="meta">
+  <div class="wrap hgrid">
+    <div class="htext">
+      <div class="logo" id="logo" role="img" aria-label="Logo Wabi Sabi"></div>
+      <h1>A beleza do simples, feita peça por peça.</h1>
+      <p class="lede">Combinados, temakis, hots e pratos quentes. Conheça cada prato, veja os preços e, quando decidir, chame a gente no WhatsApp.</p>
+      <div class="meta">
       <span class="chip"><i class="dot" id="dot"></i><span id="status">Aberto todos os dias, 9h às 23h</span></span>
       <span class="chip">Delivery e retirada</span>
       <a class="chip" href="#guia" style="text-decoration:none">Não conhece as peças? Veja o guia</a>
     </div>
-    <div><a class="wa" id="waTop" href="https://wa.me/5551999154298" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.3-.5 0-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.3.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.1.1.6-.1 1.3Z"/></svg>Falar no WhatsApp</a></div>
+      <div><a class="wa" id="waTop" href="https://wa.me/5551999154298" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.3-.5 0-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.3.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.1.1.6-.1 1.3Z"/></svg>Falar no WhatsApp</a></div>
+    </div>
+    <figure class="himg" id="himg" data-img="https://assets.olaclick.app/companies/products/images/800/96ea05de-0019-4f6c-9428-74253e00fe6b.jpg" aria-label="Combinado do Chefe"></figure>
   </div>
 </header>
 
@@ -322,14 +379,13 @@ footer a{color:var(--mist)}
 
 <main class="wrap">
   <section class="feat" id="feat" aria-roledescription="carrossel" aria-label="Pratos em destaque">
-    <div class="fhead"><div><p class="eyebrow">Nossos destaques</p><h2>O melhor da casa</h2></div>
+    <div class="fhead"><h2>O melhor da casa</h2>
       <div class="arrows"><button type="button" class="arw" id="prev" aria-label="Prato anterior">←</button><button type="button" class="arw" id="next" aria-label="Próximo prato">→</button></div></div>
     <div class="flow" id="flow"></div>
     <div class="dots" id="dots"></div>
     <p class="swipe">Deslize para ver mais</p>
   </section>
   <div class="moods" id="moods">
-    <p class="eyebrow">Qual é a ocasião?</p>
     <h2>Escolha sua noite</h2>
     <div class="mgrid">
       <a class="mood" href="#c5"><i>皆</i><b>Para dividir</b><span>Combinados de 22 a 52 peças</span></a>
@@ -346,7 +402,6 @@ footer a{color:var(--mist)}
   <p class="rcount" id="rcount" hidden></p>
   <p class="empty" id="none" hidden>Nada encontrado. Tente outra palavra, como "salmão" ou "hot".</p>
   <section class="guide" id="guia">
-    <p class="eyebrow">Guia das peças</p>
     <h2>Não sabe qual é qual?</h2>
     <p class="note" style="max-width:52ch">Cada peça tem um jeito de ser montada. Veja a diferença antes de escolher.</p>
     <div class="ggrid"><article class="gcard" id="g-sashimi"><div class="gart" data-gimg="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Salmon_sashimi_Yuichiro_Haga.jpeg/500px-Salmon_sashimi_Yuichiro_Haga.jpeg"><svg viewBox="0 0 120 84" aria-hidden="true"><g transform="rotate(-12 60 46)"><rect x="18" y="34" width="34" height="22" rx="5" fill="#f08a5d"/><rect x="40" y="30" width="34" height="24" rx="5" fill="#f08a5d" stroke="#f4f4f1" stroke-width="1.5"/><rect x="62" y="28" width="36" height="24" rx="5" fill="#f08a5d" stroke="#f4f4f1" stroke-width="1.5"/></g><path d="M66 40 l20 -3 M44 44 l18 -3" stroke="#f4f4f1" stroke-width="1.6" opacity=".6"/></svg></div><h3>Sashimi</h3><p>Só o peixe cru, em lâminas, sem arroz. O jeito mais puro de sentir o salmão.</p><a href="#c15">Ver sashimis no cardápio →</a></article><article class="gcard" id="g-niguiri"><div class="gart" data-gimg="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Salmon_Nigiri_Sushi%2C_2008.jpg/500px-Salmon_Nigiri_Sushi%2C_2008.jpg"><svg viewBox="0 0 120 84" aria-hidden="true"><ellipse cx="60" cy="56" rx="38" ry="15" fill="#f4f4f1"/><path d="M20 46 Q60 22 100 44 Q104 54 96 56 Q60 44 24 58 Q16 54 20 46Z" fill="#f08a5d"/><path d="M38 44 Q60 36 84 42 M44 50 Q62 44 86 48" stroke="#f4f4f1" stroke-width="1.6" fill="none" opacity=".6"/></svg></div><h3>Niguiri</h3><p>Um bolinho de arroz com uma fatia de peixe por cima. Coma de uma vez só.</p><a href="#c17">Ver niguiris no cardápio →</a></article><article class="gcard" id="g-gunkan"><div class="gart" data-gimg="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Ikura_gunkan_maki_sushi_by_sunday_driver_in_Kyoto.jpg/500px-Ikura_gunkan_maki_sushi_by_sunday_driver_in_Kyoto.jpg"><svg viewBox="0 0 120 84" aria-hidden="true"><rect x="32" y="34" width="56" height="38" rx="10" fill="#1d2620" stroke="#f4f4f1" stroke-width="1.2"/><ellipse cx="60" cy="36" rx="28" ry="8" fill="#f4f4f1"/><path d="M36 34 Q44 14 60 18 Q80 12 86 32 Q70 40 60 38 Q46 40 36 34Z" fill="#f08a5d"/><circle cx="52" cy="24" r="2" fill="#f4f4f1"/><circle cx="68" cy="22" r="2" fill="#f4f4f1"/></svg></div><h3>Gunkan</h3><p>Arroz envolto por uma faixa de alga, como um copinho, com recheio por cima.</p><a href="#c13">Ver gunkans no cardápio →</a></article><article class="gcard" id="g-uramaki"><div class="gart" data-gimg="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Salmon_and_avocado_uramaki_with_smelt_egg_topping%2C_avocado_norimaki.jpg/500px-Salmon_and_avocado_uramaki_with_smelt_egg_topping%2C_avocado_norimaki.jpg"><svg viewBox="0 0 120 84" aria-hidden="true"><circle cx="60" cy="42" r="30" fill="#f4f4f1"/><circle cx="60" cy="42" r="18" fill="#1d2620"/><circle cx="56" cy="42" r="9" fill="#f08a5d"/><circle cx="66" cy="44" r="6" fill="#f4f4f1" opacity=".9"/><circle cx="87.0" cy="42.0" r="1.4" fill="#2b2b2b"/><circle cx="85.51383755049793" cy="50.83425681349611" r="1.4" fill="#2b2b2b"/><circle cx="81.2189560409776" cy="58.695984682882894" r="1.4" fill="#2b2b2b"/><circle cx="74.58816225843978" cy="64.7197165898132" r="1.4" fill="#2b2b2b"/><circle cx="66.35141447918072" cy="68.24232333680945" r="1.4" fill="#2b2b2b"/><circle cx="57.415464203611855" cy="68.87601485929765" r="1.4" fill="#2b2b2b"/><circle cx="48.764035413227155" cy="66.55103052429341" r="1.4" fill="#2b2b2b"/><circle cx="41.34953022675334" cy="61.52331880693477" r="1.4" fill="#2b2b2b"/><circle cx="35.98818265824788" cy="54.346360919166926" r="1.4" fill="#2b2b2b"/><circle cx="33.27020259178798" cy="45.81024021761642" r="1.4" fill="#2b2b2b"/><circle cx="33.49480187280086" cy="36.8546650023619" r="1.4" fill="#2b2b2b"/><circle cx="36.63725524072163" cy="28.46551968811469" r="1.4" fill="#2b2b2b"/><circle cx="42.35162223668247" cy="21.566332626685938" r="1.4" fill="#2b2b2b"/><circle cx="50.00883044201147" cy="16.91660846568943" r="1.4" fill="#2b2b2b"/><circle cx="58.76592761205833" cy="15.028217238355936" r="1.4" fill="#2b2b2b"/><circle cx="67.65887900750711" cy="16.109044584095262" r="1.4" fill="#2b2b2b"/><circle cx="75.70869422619761" cy="20.04010642767534" r="1.4" fill="#2b2b2b"/><circle cx="82.0292004456522" cy="26.38864747290366" r="1.4" fill="#2b2b2b"/><circle cx="85.92459773955989" cy="34.455781548629005" r="1.4" fill="#2b2b2b"/></svg></div><h3>Uramaki</h3><p>Rolinho com o arroz por fora e a alga por dentro. Costuma levar gergelim.</p><a href="#c14">Ver uramakis no cardápio →</a></article><article class="gcard" id="g-hossomaki"><div class="gart" data-gimg="https://upload.wikimedia.org/wikipedia/commons/3/3d/8hosomak8.jpg"><svg viewBox="0 0 120 84" aria-hidden="true"><circle cx="60" cy="42" r="24" fill="#1d2620" stroke="#f4f4f1" stroke-width="1.2"/><circle cx="60" cy="42" r="19" fill="#f4f4f1"/><circle cx="60" cy="42" r="7" fill="#f08a5d"/></svg></div><h3>Hossomaki</h3><p>Rolinho fino com a alga por fora e um único recheio no centro.</p><a href="#c19">Ver hossomakis no cardápio →</a></article><article class="gcard" id="g-hot"><div class="gart" data-gimg="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Smoked_Salmon_Hot_Roll.jpg/500px-Smoked_Salmon_Hot_Roll.jpg"><svg viewBox="0 0 120 84" aria-hidden="true"><circle cx="60" cy="44" r="30" fill="#c9893c" stroke="#e7b06a" stroke-width="3" stroke-dasharray="3 4"/><circle cx="60" cy="44" r="19" fill="#f4f4f1"/><circle cx="56" cy="44" r="8" fill="#f08a5d"/><circle cx="65" cy="46" r="5" fill="#f4f4f1"/><path d="M48 10 q4 -5 0 -9 M60 12 q4 -5 0 -9 M72 10 q4 -5 0 -9" stroke="#f4f4f1" fill="none" opacity=".5"/></svg></div><h3>Hot roll</h3><p>Rolinho empanado e frito na hora. Crocante por fora, quente e cremoso por dentro.</p><a href="#c18">Ver hot rolls no cardápio →</a></article><article class="gcard" id="g-temaki"><div class="gart" data-gimg="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Tuna_and_Salmon_Handrolls_-_Teppansan_AUD2.80_each_%284797471077%29.jpg/500px-Tuna_and_Salmon_Handrolls_-_Teppansan_AUD2.80_each_%284797471077%29.jpg"><svg viewBox="0 0 120 84" aria-hidden="true"><path d="M30 22 L92 22 L52 80 Z" fill="#1d2620" stroke="#f4f4f1" stroke-width="1.2"/><path d="M30 22 Q46 4 62 14 Q78 2 94 20 Q80 30 62 26 Q44 32 30 22Z" fill="#f08a5d"/><path d="M36 24 Q60 34 88 24 L80 34 Q60 40 42 34Z" fill="#f4f4f1"/><path d="M58 12 l4 -6 M70 10 l2 -6" stroke="#8fbf7a" stroke-width="2"/></svg></div><h3>Temaki</h3><p>Cone de alga recheado com arroz, peixe e cream cheese. Come com a mão.</p><a href="#c21">Ver temakis no cardápio →</a></article><article class="gcard" id="g-samon"><div class="gart"><svg viewBox="0 0 120 84" aria-hidden="true"><circle cx="60" cy="44" r="26" fill="#f08a5d"/><path d="M40 32 Q60 22 80 34 M38 50 Q60 40 82 52" stroke="#f4f4f1" stroke-width="2" fill="none" opacity=".6"/><circle cx="60" cy="44" r="12" fill="#c9893c"/><circle cx="60" cy="44" r="6" fill="#f4f4f1"/></svg></div><h3>Samon maki</h3><p>Lâmina de salmão enrolada em volta do recheio, no lugar da alga.</p><a href="#c16">Ver samon makis no cardápio →</a></article><article class="gcard" id="g-poke"><div class="gart" data-gimg="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Salmon_Poke_Bowl_%28S%29_with_Spicy_mayo_sauce_-_Kitokito.jpg/500px-Salmon_Poke_Bowl_%28S%29_with_Spicy_mayo_sauce_-_Kitokito.jpg"><svg viewBox="0 0 120 84" aria-hidden="true"><path d="M18 40 H102 Q98 74 60 76 Q22 74 18 40Z" fill="#2b2b2b" stroke="#f4f4f1" stroke-width="1.2"/><ellipse cx="60" cy="40" rx="42" ry="9" fill="#f4f4f1"/><rect x="34" y="28" width="14" height="10" rx="3" fill="#f08a5d"/><rect x="52" y="26" width="14" height="10" rx="3" fill="#f08a5d"/><circle cx="76" cy="33" r="6" fill="#8fbf7a"/><rect x="84" y="30" width="10" height="6" rx="2" fill="#e8a33d"/></svg></div><h3>Poke</h3><p>Tigela havaiana com arroz, peixe em cubos, legumes e molho.</p><a href="#c22">Ver pokes no cardápio →</a></article></div>
@@ -362,9 +417,9 @@ footer a{color:var(--mist)}
 </footer>
 
 <div class="sheet" id="sheetDish" hidden><div class="panel dish" role="dialog" aria-modal="true" aria-labelledby="dName">
-  <div class="hero-img" id="dImg"><button class="x" id="dClose" aria-label="Fechar">✕</button></div>
+  <div class="hero-img" id="dImg"><button class="x" id="dClose" aria-label="Fechar"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 2l10 10M12 2L2 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button></div>
   <div class="in">
-    <div><p class="eyebrow" id="dCat"></p><h2 id="dName"></h2></div>
+    <div><p id="dCat" hidden></p><h2 id="dName"></h2></div>
     <div id="dTags"></div>
     <div id="dDesc"></div>
     <div id="dPrice"></div>
@@ -377,7 +432,7 @@ footer a{color:var(--mist)}
 
 <div class="sheet" id="sheet" hidden data-off>
   <div class="panel" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
-    <header><h2 id="sheetTitle">Seu pedido</h2><button class="x" id="closeCart" aria-label="Fechar">✕</button></header>
+    <header><h2 id="sheetTitle">Seu pedido</h2><button class="x" id="closeCart" aria-label="Fechar"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 2l10 10M12 2L2 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button></header>
     <div id="lines"></div>
     <div class="field"><span style="font-size:13px;color:var(--mist)">Como você quer receber?</span>
       <div class="seg"><label><input type="radio" name="tipo" value="Entrega" checked> Entrega</label><label><input type="radio" name="tipo" value="Retirada"> Retirada</label></div></div>
@@ -476,7 +531,15 @@ function render(){
   document.getElementById("none").hidden=any;
   document.getElementById("feat").hidden=!!q;document.getElementById("guia").hidden=!!q;document.getElementById("moods").hidden=!!q;
   loadImgs(document.getElementById("list"));
+  reveal(document.getElementById("list"));
   spy();
+}
+
+let rio=null;
+function reveal(root){
+  if(reduce||!("IntersectionObserver" in window))return;
+  rio=rio||new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");rio.unobserve(e.target)}}),{rootMargin:"0px 0px -6% 0px"});
+  root.querySelectorAll(".thumb,.gart,.himg").forEach(el=>{if(el.classList.contains("reveal"))return;const r=el.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0)return;el.classList.add("reveal");rio.observe(el)});
 }
 function loadImgs(root){
   root.querySelectorAll("[data-img]").forEach(el=>{const src=el.dataset.img;if(!src)return;const im=new Image();im.onload=()=>{el.style.backgroundImage=`url("${src}")`};im.src=src;});
@@ -507,7 +570,7 @@ function buildMsg(){
   const nome=document.getElementById("nome").value.trim(), end=document.getElementById("end").value.trim(), obs=document.getElementById("obs").value.trim();
   document.getElementById("endBox").hidden=tipo!=="Entrega";
   let m="Olá, Wabi Sabi! Quero fazer este pedido:\n\n";
-  for(const id in cart) m+=`${cart[id]}x ${ITEMS[id].name} — ${brl(cart[id]*ITEMS[id].price)}\n${notes[id]?`   ↳ ${notes[id]}\n`:""}`;
+  for(const id in cart) m+=`${cart[id]}x ${ITEMS[id].name}: ${brl(cart[id]*ITEMS[id].price)}\n${notes[id]?`   ↳ ${notes[id]}\n`:""}`;
   m+=`\nTotal dos itens: ${brl(t)}\n${tipo}${tipo==="Entrega"&&end?": "+end:""}\nPagamento: ${document.getElementById("pag").value}`;
   if(nome) m+=`\nNome: ${nome}`; if(obs) m+=`\nObs.: ${obs}`;
   document.getElementById("send").href=`https://wa.me/${WA}?text=${encodeURIComponent(m)}`;
@@ -673,5 +736,5 @@ addEventListener("pointermove",e=>{if(!drag)return;const dx=e.clientX-drag.x;if(
 addEventListener("pointerup",()=>{if(!drag)return;const m=drag.moved;drag=null;flow.style.scrollSnapType="";flow.style.scrollBehavior="";shape();go(cur);if(m){flow.dataset.dragged="1";setTimeout(()=>delete flow.dataset.dragged,50)}});
 flow.addEventListener("click",e=>{if(flow.dataset.dragged){e.stopPropagation();e.preventDefault()}},true);
 document.querySelectorAll("[data-gimg]").forEach(el=>{const im=new Image();im.onload=()=>{el.style.backgroundImage=`url("${el.dataset.gimg}")`;el.classList.add("has")};im.src=el.dataset.gimg});
-renderCats();renderRail();render();startAuto();updateCart();status();
+loadImgs(document.querySelector(".hero"));renderCats();renderRail();render();reveal(document);startAuto();updateCart();status();
 </script>
