@@ -229,16 +229,10 @@ section.cat > header span{color:var(--mist);font-size:13px;flex:none}
 
 /* itens clicáveis e revelação */
 .item .body,.card .ph,.card h3{cursor:pointer}
-.item:hover h3{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+@media (hover:hover){.item:hover h3{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}}
 .card .ph{transition:transform .6s}
 .card:hover .ph{transform:scale(1.04)}
-@supports (animation-timeline:view()){
- @media (prefers-reduced-motion:no-preference){
-  .item,.card,.mood{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 35%}
- }
- .motion .item,.motion .card,.motion .mood{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 35%}
-}
-@keyframes rise{from{opacity:.15;transform:translateY(22px)}to{opacity:1;transform:none}}
+
 
 /* ficha do prato */
 .dish{padding:0;gap:0;overflow:auto}
@@ -521,11 +515,17 @@ function closeSheet(){document.getElementById("sheet").hidden=true;document.getE
 
 let io;
 let activeCi=null;
+let pageScrolling=false,psT;
+addEventListener("scroll",()=>{pageScrolling=true;clearTimeout(psT);psT=setTimeout(()=>{pageScrolling=false;centerChip()},180)},{passive:true});
+function centerChip(){
+  const bar=document.getElementById("cats"),a=bar.querySelector("a.on");if(!a)return;
+  const left=Math.max(0,a.offsetLeft-(bar.clientWidth-a.offsetWidth)/2);
+  if(Math.abs(bar.scrollLeft-left)>2)bar.scrollTo({left,behavior:reduce?"auto":"smooth"});
+}
 function setActive(ci){
   if(ci===activeCi)return;activeCi=ci;
-  const bar=document.getElementById("cats");
-  bar.querySelectorAll("a").forEach(a=>{const on=a.dataset.ci===ci;a.classList.toggle("on",on);
-    if(on){const left=a.offsetLeft-(bar.clientWidth-a.offsetWidth)/2;bar.scrollTo({left:Math.max(0,left),behavior:reduce?"auto":"smooth"})}});
+  document.querySelectorAll("#cats a").forEach(a=>a.classList.toggle("on",a.dataset.ci===ci));
+  if(!pageScrolling)centerChip();
 }
 function spy(){
   io&&io.disconnect();activeCi=null;
@@ -661,7 +661,7 @@ let raf,settle;flow.addEventListener("scroll",()=>{cancelAnimationFrame(raf);raf
 addEventListener("resize",()=>{jumpTo(N+(cur%N));shape()});
 function pause(){clearInterval(auto);clearTimeout(idle);idle=setTimeout(startAuto,7000)}
 function stopAuto(){pause()}
-function startAuto(){if(reduce)return;clearInterval(auto);auto=setInterval(()=>{if(document.getElementById("sheetDish").hidden&&!drag)go(cur+1)},4500)}
+function startAuto(){if(reduce)return;clearInterval(auto);auto=setInterval(()=>{if(document.getElementById("sheetDish").hidden&&!drag&&!pageScrolling)go(cur+1)},4500)}
 document.getElementById("prev").onclick=()=>{pause();go(cur-1)};
 document.getElementById("next").onclick=()=>{pause();go(cur+1)};
 ["pointerdown","wheel","touchstart","keydown"].forEach(ev=>flow.addEventListener(ev,stopAuto,{passive:true}));
