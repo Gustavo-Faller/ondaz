@@ -64,7 +64,7 @@ h1{font-family:var(--f-display);font-weight:500;font-style:italic;font-size:clam
 .search{display:flex;align-items:center;gap:8px;background:var(--ink-2);border:1px solid var(--ink-3);border-radius:12px;padding:0 12px}
 .search input{flex:1;min-width:0;background:none;border:0;color:var(--washi);font:inherit;padding:11px 0;outline:none}
 .search label{color:var(--mist);display:flex}
-.cats{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:12px;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px))}
+.cats{position:relative;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:12px;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px))}
 .cats::-webkit-scrollbar{display:none}
 .cats a{flex:none;padding:7px 13px;border-radius:999px;font-size:13px;color:var(--mist);text-decoration:none;border:1px solid var(--ink-3);white-space:nowrap}
 .cats a.on{background:var(--washi);color:var(--ink);border-color:var(--washi);font-weight:700}
@@ -520,9 +520,16 @@ function openSheet(){document.getElementById("sheet").hidden=false;document.getE
 function closeSheet(){document.getElementById("sheet").hidden=true;document.getElementById("openCart").focus()}
 
 let io;
+let activeCi=null;
+function setActive(ci){
+  if(ci===activeCi)return;activeCi=ci;
+  const bar=document.getElementById("cats");
+  bar.querySelectorAll("a").forEach(a=>{const on=a.dataset.ci===ci;a.classList.toggle("on",on);
+    if(on){const left=a.offsetLeft-(bar.clientWidth-a.offsetWidth)/2;bar.scrollTo({left:Math.max(0,left),behavior:reduce?"auto":"smooth"})}});
+}
 function spy(){
-  io&&io.disconnect();
-  io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const ci=e.target.dataset.ci;document.querySelectorAll("#cats a").forEach(a=>{const on=a.dataset.ci===ci;a.classList.toggle("on",on);if(on)a.scrollIntoView({inline:"center",block:"nearest",behavior:"smooth"})})}}),{rootMargin:"-160px 0px -60% 0px"});
+  io&&io.disconnect();activeCi=null;
+  io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)setActive(e.target.dataset.ci)}),{rootMargin:"-160px 0px -60% 0px"});
   document.querySelectorAll("section.cat").forEach(s=>io.observe(s));
 }
 function status(){
