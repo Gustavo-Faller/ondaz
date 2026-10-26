@@ -204,11 +204,12 @@ section.cat > header span{color:var(--mist);font-size:13px;flex:none}
 .moods h2{font-size:26px}
 .mgrid{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;margin:12px calc(-1 * max(16px,env(safe-area-inset-left,0px))) 0;padding-inline:max(16px,env(safe-area-inset-left,0px))}
 .mgrid::-webkit-scrollbar{display:none}
-.mood,.mood:first-child{flex:0 0 min(44vw,180px);grid-column:auto;min-height:0;padding:12px 14px;scroll-snap-align:start;justify-content:center}
-.mood i{font-size:52px;top:-8px;right:-4px}
-.mood b{font-size:19px}
-.mood span{font-size:11.5px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-@media (min-width:640px){.mgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));overflow:visible}.mood,.mood:first-child{flex:none;grid-column:auto}}
+.mood{flex:0 0 min(44vw,180px);position:relative;overflow:hidden;border:1px solid var(--ink-3);border-radius:4px;background:var(--ink-2);padding:12px 14px;text-decoration:none;color:var(--washi);display:flex;flex-direction:column;justify-content:center;scroll-snap-align:start;transition:border-color .3s,transform .3s}
+@media (hover:hover){.mood:hover{border-color:var(--washi);transform:translateY(-2px)}.mood:hover i{opacity:.2;transform:scale(1.08) rotate(-4deg)}}
+.mood i{position:absolute;right:-4px;top:-8px;font-style:normal;font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;font-size:52px;line-height:1;opacity:.08;transition:opacity .4s,transform .6s}
+.mood b{font-family:var(--f-display);font-weight:600;font-size:19px;line-height:1.1;position:relative}
+.mood span{color:var(--mist);font-size:11.5px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;position:relative}
+@media (min-width:640px){.mgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));overflow:visible}.mood{flex:none}}
 
 /* abertura */
 #intro{position:fixed;inset:0;z-index:100;background:var(--ink);display:grid;place-items:center;text-align:center;padding:24px;transition:transform .9s cubic-bezier(.7,0,.2,1),opacity .9s}
@@ -227,16 +228,6 @@ section.cat > header span{color:var(--mist);font-size:13px;flex:none}
 @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
 /* ocasiões */
-.moods{padding-block:30px 0}
-.mgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:16px}
-.mood{position:relative;overflow:hidden;min-height:118px;border:1px solid var(--ink-3);border-radius:4px;background:var(--ink-2);padding:14px;text-decoration:none;color:var(--washi);display:flex;flex-direction:column;justify-content:flex-end;transition:border-color .3s,transform .3s}
-@media (hover:hover){.mood:hover{border-color:var(--washi);transform:translateY(-2px)}}
-.mood i{position:absolute;right:-6px;top:-18px;font-style:normal;font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;font-size:96px;line-height:1;opacity:.08;transition:opacity .4s,transform .6s}
-.mood:hover i{opacity:.2;transform:scale(1.08) rotate(-4deg)}
-.mood b{font-family:var(--f-display);font-weight:600;font-size:22px;line-height:1.1}
-.mood span{color:var(--mist);font-size:12px;margin-top:4px}
-.mood:first-child{grid-column:1/-1;min-height:140px}
-@media (min-width:640px){.mgrid{grid-template-columns:repeat(4,minmax(0,1fr))}.mood:first-child{grid-column:span 2}}
 
 /* itens clicáveis e revelação */
 .item .body,.card .ph,.card h3{cursor:pointer}
