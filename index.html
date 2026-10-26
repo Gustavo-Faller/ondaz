@@ -131,6 +131,7 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rg
 .screens{position:relative;aspect-ratio:1200/866;background:var(--noite)}
 .screens img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;opacity:0;transition:opacity .6s}
 .screens img.on{opacity:1}
+.screens img.fit{object-fit:contain;object-position:center;background:#000}
 .switch{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 .switch button{min-height:44px;padding:10px 16px;border-radius:999px;border:1px solid var(--linha);background:transparent;color:var(--cinza);font:500 13px/1 var(--f-mono);cursor:pointer}
 .switch button[aria-pressed="true"]{background:var(--neon);color:var(--noite);border-color:var(--neon)}
@@ -311,24 +312,26 @@ footer{border-top:1px solid var(--linha)}
       <div class="case">
         <div class="stage">
           <div class="browser">
-            <div class="bar"><i></i><i></i><i></i><span class="url">cunha-importadoss.vercel.app</span></div>
+            <div class="bar"><i></i><i></i><i></i><span class="url" id="curl">cunha-importadoss.vercel.app</span></div>
             <div class="screens" id="screens">
               <img class="on" src="/img/cunha-1.jpg" width="1200" height="748" alt="Página inicial do site da Cunha Importados" loading="lazy" decoding="async">
               <img src="/img/cunha-2.jpg" width="1200" height="863" alt="Catálogo de iPhones do site da Cunha Importados" loading="lazy" decoding="async">
               <img src="/img/cunha-3.jpg" width="1200" height="866" alt="Página de produto do site da Cunha Importados" loading="lazy" decoding="async">
+              <img class="fit" src="/img/cunha-painel.jpg" width="1200" height="603" alt="Painel administrativo da Cunha Importados com a lista de produtos cadastrados" loading="lazy" decoding="async">
             </div>
           </div>
           <div class="switch" role="group" aria-label="Telas do site da Cunha">
             <button type="button" id="cs0" aria-pressed="true">Início</button>
             <button type="button" id="cs1" aria-pressed="false">Catálogo</button>
             <button type="button" id="cs2" aria-pressed="false">Produto</button>
+            <button type="button" id="cs3" aria-pressed="false">Painel admin</button>
           </div>
         </div>
         <div class="info">
-          <div class="tags"><span>Site</span><span>Catálogo</span><span>Código</span></div>
+          <div class="tags"><span>Site</span><span>Catálogo</span><span>Painel admin</span></div>
           <h3>Cunha Importados</h3>
           <p class="muted">Vitrine de iPhones novos, seminovos e acessórios.</p>
-          <ul><li>Busca de produtos</li><li>Fotos em 3D</li><li>Pedido direto pelo WhatsApp</li><li>Publicado na Vercel</li></ul>
+          <ul><li>Busca de produtos</li><li>Fotos em 3D</li><li>Pedido direto pelo WhatsApp</li><li>Painel para cadastrar produtos, marcar vendidos e destacar</li></ul>
           <div class="acts">
             <a class="btn btn-neon" href="https://cunha-importadoss.vercel.app/" target="_blank" rel="noopener">Ver o site no ar</a>
             <a class="btn btn-dark" href="https://wa.me/5551998948864?text=Vi%20o%20site%20da%20Cunha%20e%20quero%20algo%20assim%20para%20minha%20marca" target="_blank" rel="noopener">Quero algo assim</a>
@@ -468,10 +471,11 @@ footer{border-top:1px solid var(--linha)}
   if (!reduce) setInterval(function(){ rot.classList.add('out'); setTimeout(function(){ wi = (wi+1) % words.length; rot.textContent = words[wi]; rot.classList.remove('out'); }, 350); }, 2600);
 
   // telas da Cunha
-  var shots = document.querySelectorAll('#screens img'), cbtn = [0,1,2].map(function(i){ return document.getElementById('cs'+i); }), ci = 0, auto;
-  function showC(i){ ci = i; shots.forEach(function(im,k){ im.classList.toggle('on', k===i); }); cbtn.forEach(function(b,k){ b.setAttribute('aria-pressed', k===i); }); }
+  var shots = document.querySelectorAll('#screens img'), cbtn = [0,1,2,3].map(function(i){ return document.getElementById('cs'+i); }), ci = 0, auto;
+  var curl = document.getElementById('curl');
+  function showC(i){ ci = i; curl.textContent = i === 3 ? 'cunha-importadoss.vercel.app/painel' : 'cunha-importadoss.vercel.app'; shots.forEach(function(im,k){ im.classList.toggle('on', k===i); }); cbtn.forEach(function(b,k){ b.setAttribute('aria-pressed', k===i); }); }
   cbtn.forEach(function(b,i){ b.addEventListener('click', function(){ clearInterval(auto); showC(i); }); });
-  if (!reduce) auto = setInterval(function(){ showC((ci+1) % 3); }, 3200);
+  if (!reduce) auto = setInterval(function(){ showC((ci+1) % 4); }, 3200);
 
   // carrosséis da Saracura
   var strip = document.getElementById('strip'), sets = [['xampus',9,'Xampus naturais'],['chas',8,'Chás funcionais']], sbtn = [0,1].map(function(i){ return document.getElementById('ss'+i); });
