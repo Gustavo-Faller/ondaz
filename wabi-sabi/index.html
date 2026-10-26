@@ -120,10 +120,10 @@ section.cat > header span{color:var(--mist);font-size:13px;flex:none}
 .arrows{display:flex;gap:8px}
 .arw{width:42px;height:42px;border-radius:50%;border:1px solid var(--ink-3);background:transparent;font-size:16px;transition:border-color .2s,background .2s}
 .arw:hover{border-color:var(--washi);background:var(--washi);color:var(--ink)}
-.flow{display:flex;gap:6px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-block:22px 10px;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:calc(50% - min(30vw,150px));scroll-behavior:smooth;cursor:grab}
+.flow{position:relative;display:flex;gap:6px;padding-block:30px 18px!important;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-block:22px 10px;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:calc(50% - min(30vw,150px));scroll-behavior:smooth;cursor:grab}
 .flow::-webkit-scrollbar{display:none}
 .slide{flex:0 0 min(60vw,300px);scroll-snap-align:center;position:relative;border-radius:6px;overflow:hidden;background:var(--ink-2);border:1px solid var(--ink-3);transform-origin:center bottom;transition:opacity .3s ease,border-color .4s ease,box-shadow .4s ease;will-change:transform}
-.slide.on{border-color:rgba(244,244,241,.45);box-shadow:0 30px 60px -24px rgba(0,0,0,.95),0 0 0 1px rgba(244,244,241,.12);z-index:1}
+.slide.on{border-color:rgba(244,244,241,.55);box-shadow:0 30px 60px -24px rgba(0,0,0,.95),0 0 0 1px rgba(244,244,241,.12);z-index:1}
 .slide .cap p,.slide .cap .row,.slide .cap small{transition:opacity .4s ease,transform .4s ease}
 .slide:not(.on) .cap p,.slide:not(.on) .cap .row{opacity:0;transform:translateY(8px)}
 .slide:not(.on) .cap h3{font-size:20px}
@@ -621,7 +621,7 @@ const FEAT=[
 ["1-2","Para dividir","54 peças com sashimis, hots, uramakis e niguiris."],
 ["0-0","À vontade","Entrada, prato principal e sobremesa no festival individual."],
 ["8-0","Entrada autoral","Salmão com azeite de trufas, tobiko e gema de codorna."],
-["2-3","Fresco e cítrico","O ceviche da casa, para abrir a noite."],
+["5-2","Para a mesa toda","52 peças de salmão, com niguiris selados e hots."],
 ["21-12","Criação Wabi Sabi","Enrolado no salmão, sem alga, com o recheio que você escolher."],
 ["24-1","Prato quente","Risoto cremoso de camarão para quem prefere algo quente."],
 ["1-1","Clássico crocante","Empanado por fora, salmão e cream cheese por dentro."],
@@ -646,7 +646,7 @@ function shape(){
   const c=flow.scrollLeft+flow.clientWidth/2;let best=0,bd=1e9;
   slides.forEach((sl,i)=>{const d=(sl.offsetLeft+sl.offsetWidth/2-c)/sl.offsetWidth, a=Math.min(Math.abs(d),1.5);
     if(Math.abs(d)<bd){bd=Math.abs(d);best=i}
-    sl.style.transform=`scale(${1-Math.min(a,1)*.2})`;sl.style.opacity=1-Math.min(a,1)*.55;});
+    sl.style.transform=`scale(${1-Math.min(a,1)*.24}) translateY(${Math.min(a,1)*-4}px)`;sl.style.opacity=1-Math.min(a,1)*.6;});
   slides.forEach((sl,i)=>sl.classList.toggle("on",i===best));
   cur=best;dotsEl.querySelectorAll("button").forEach((b,i)=>b.classList.toggle("on",i===best%N));
 }
