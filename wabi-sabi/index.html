@@ -230,7 +230,7 @@ section.cat > header span{color:var(--mist);font-size:13px;flex:none}
 .moods{padding-block:30px 0}
 .mgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:16px}
 .mood{position:relative;overflow:hidden;min-height:118px;border:1px solid var(--ink-3);border-radius:4px;background:var(--ink-2);padding:14px;text-decoration:none;color:var(--washi);display:flex;flex-direction:column;justify-content:flex-end;transition:border-color .3s,transform .3s}
-.mood:hover{border-color:var(--washi);transform:translateY(-2px)}
+@media (hover:hover){.mood:hover{border-color:var(--washi);transform:translateY(-2px)}}
 .mood i{position:absolute;right:-6px;top:-18px;font-style:normal;font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;font-size:96px;line-height:1;opacity:.08;transition:opacity .4s,transform .6s}
 .mood:hover i{opacity:.2;transform:scale(1.08) rotate(-4deg)}
 .mood b{font-family:var(--f-display);font-weight:600;font-size:22px;line-height:1.1}
