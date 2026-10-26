@@ -95,6 +95,7 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rg
 
 /* seções */
 .band{padding-block:104px}
+#trabalhos,#habilidades,#processo{padding-top:64px}
 .band.alt{background:var(--grafite)}
 .head{max-width:740px;margin-bottom:56px}
 .head h2{font-size:clamp(36px,5.4vw,66px);line-height:.98}
@@ -219,11 +220,42 @@ footer{border-top:1px solid var(--linha)}
   .proof{padding:26px}
   .foot{padding-bottom:96px}
 }
-@media (prefers-reduced-motion:reduce){
-  .collage .browser,.post,.track,.caret{animation:none}
-  .btn,.wa,.card,.rot{transition:none}
-  html{scroll-behavior:auto}
-}
+/* entradas no scroll (só para o que está abaixo da dobra) */
+.r{opacity:.001;transform:translateY(36px)}
+.r.in{opacity:1;transform:none;transition:opacity .9s ease var(--d,0s),transform .9s cubic-bezier(.2,.7,.2,1) var(--d,0s)}
+.r.l{transform:translateX(-40px)}.r.l.in{transform:none}
+/* brilho que segue o mouse no hero */
+.glow{position:absolute;width:520px;height:520px;border-radius:50%;left:0;top:0;pointer-events:none;background:radial-gradient(circle,rgba(198,255,61,.12),transparent 65%);transform:translate(-50%,-50%);transition:opacity .4s;opacity:0}
+.hero:hover .glow{opacity:1}
+/* divisória em onda entre seções */
+.wdiv{position:relative;height:90px;overflow:hidden;margin-block:-1px}
+.wdiv svg{position:absolute;left:0;top:0;width:200%;height:100%;animation:wslide 14s linear infinite}
+.wdiv svg.b{animation-duration:22s;animation-direction:reverse;opacity:.6}
+@keyframes wslide{to{transform:translateX(-50%)}}
+/* ponto neon dos títulos pulsando */
+.head h2 .dot{display:inline-block;animation:dotp 2.4s ease-in-out infinite}
+@keyframes dotp{50%{transform:translateY(-6px);text-shadow:0 0 18px rgba(198,255,61,.8)}}
+/* cards com inclinação 3D */
+.tilt{transform-style:preserve-3d;will-change:transform}
+/* linha do processo se desenhando */
+.steps{position:relative;border-top:0}
+.steps::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:var(--neon);transform-origin:left;transform:scaleX(var(--p,1));transition:transform 1.6s cubic-bezier(.2,.7,.2,1)}
+.steps::after{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:var(--linha)}
+.step .n{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;border:1px solid rgba(198,255,61,.4);margin-top:-45px;background:var(--noite);position:relative;z-index:1}
+.band.alt .step .n{background:var(--grafite)}
+.step{padding-top:28px}
+/* onda da chamada final balançando */
+.cta svg{animation:sway 6s ease-in-out infinite}
+@keyframes sway{50%{transform:translate(-30px,-12px) rotate(-4deg)}}
+.cta .btn{transition:transform .2s}
+/* skills: barra neon cresce no hover */
+.skill{position:relative;border-top-color:rgba(198,255,61,.25)}
+.skill::before{content:"";position:absolute;left:0;top:-2px;height:2px;width:100%;background:var(--neon);transform-origin:left;transform:scaleX(var(--p,1));transition:transform 1.2s cubic-bezier(.2,.7,.2,1) var(--d,0s)}
+.skill li{transition:color .2s,transform .2s}.skill li:hover{color:var(--nevoa);transform:translateX(4px)}
+/* botão do WhatsApp chamando atenção */
+.wa::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--neon);animation:ring 2.6s ease-out infinite}
+@keyframes ring{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.7);opacity:0}}
+
 </style>
 </head>
 <body>
@@ -244,6 +276,7 @@ footer{border-top:1px solid var(--linha)}
 <main id="topo">
   <div class="hero">
     <canvas id="waves" aria-hidden="true"></canvas>
+    <div class="glow" id="glow" aria-hidden="true"></div>
     <div class="wrap">
       <div>
         <h1>Sua marca merece <span class="rot" id="rot">aparecer</span><span class="dot">.</span></h1>
@@ -302,6 +335,7 @@ footer{border-top:1px solid var(--linha)}
     </div>
   </section>
 
+  <div class="wdiv" aria-hidden="true" style="background:linear-gradient(#0B0F1A 50%,#141B2D 50%)"><svg viewBox="0 0 2400 90" preserveAspectRatio="none"><path d="M0 45 Q 60 17 120 45 T 240 45 Q 300 17 360 45 T 480 45 Q 540 17 600 45 T 720 45 Q 780 17 840 45 T 960 45 Q 1020 17 1080 45 T 1200 45 Q 1260 17 1320 45 T 1440 45 Q 1500 17 1560 45 T 1680 45 Q 1740 17 1800 45 T 1920 45 Q 1980 17 2040 45 T 2160 45 Q 2220 17 2280 45 T 2400 45 V90 H0Z" fill="#141B2D"/><path d="M0 45 Q 60 17 120 45 T 240 45 Q 300 17 360 45 T 480 45 Q 540 17 600 45 T 720 45 Q 780 17 840 45 T 960 45 Q 1020 17 1080 45 T 1200 45 Q 1260 17 1320 45 T 1440 45 Q 1500 17 1560 45 T 1680 45 Q 1740 17 1800 45 T 1920 45 Q 1980 17 2040 45 T 2160 45 Q 2220 17 2280 45 T 2400 45" fill="none" stroke="#C6FF3D" stroke-opacity=".5" stroke-width="2"/></svg><svg class="b" viewBox="0 0 2400 90" preserveAspectRatio="none"><path d="M0 45 Q 60 17 120 45 T 240 45 Q 300 17 360 45 T 480 45 Q 540 17 600 45 T 720 45 Q 780 17 840 45 T 960 45 Q 1020 17 1080 45 T 1200 45 Q 1260 17 1320 45 T 1440 45 Q 1500 17 1560 45 T 1680 45 Q 1740 17 1800 45 T 1920 45 Q 1980 17 2040 45 T 2160 45 Q 2220 17 2280 45 T 2400 45" fill="none" stroke="#F2F5FA" stroke-opacity=".12" stroke-width="1.5"/></svg></div>
   <section class="band alt" id="trabalhos">
     <div class="wrap">
       <div class="head">
@@ -366,6 +400,7 @@ footer{border-top:1px solid var(--linha)}
     </div>
   </section>
 
+  <div class="wdiv" aria-hidden="true" style="background:linear-gradient(#141B2D 50%,#0B0F1A 50%)"><svg viewBox="0 0 2400 90" preserveAspectRatio="none"><path d="M0 45 Q 60 17 120 45 T 240 45 Q 300 17 360 45 T 480 45 Q 540 17 600 45 T 720 45 Q 780 17 840 45 T 960 45 Q 1020 17 1080 45 T 1200 45 Q 1260 17 1320 45 T 1440 45 Q 1500 17 1560 45 T 1680 45 Q 1740 17 1800 45 T 1920 45 Q 1980 17 2040 45 T 2160 45 Q 2220 17 2280 45 T 2400 45 V90 H0Z" fill="#0B0F1A"/><path d="M0 45 Q 60 17 120 45 T 240 45 Q 300 17 360 45 T 480 45 Q 540 17 600 45 T 720 45 Q 780 17 840 45 T 960 45 Q 1020 17 1080 45 T 1200 45 Q 1260 17 1320 45 T 1440 45 Q 1500 17 1560 45 T 1680 45 Q 1740 17 1800 45 T 1920 45 Q 1980 17 2040 45 T 2160 45 Q 2220 17 2280 45 T 2400 45" fill="none" stroke="#C6FF3D" stroke-opacity=".5" stroke-width="2"/></svg><svg class="b" viewBox="0 0 2400 90" preserveAspectRatio="none"><path d="M0 45 Q 60 17 120 45 T 240 45 Q 300 17 360 45 T 480 45 Q 540 17 600 45 T 720 45 Q 780 17 840 45 T 960 45 Q 1020 17 1080 45 T 1200 45 Q 1260 17 1320 45 T 1440 45 Q 1500 17 1560 45 T 1680 45 Q 1740 17 1800 45 T 1920 45 Q 1980 17 2040 45 T 2160 45 Q 2220 17 2280 45 T 2400 45" fill="none" stroke="#F2F5FA" stroke-opacity=".12" stroke-width="1.5"/></svg></div>
   <section class="band" id="habilidades">
     <div class="wrap">
       <div class="head">
@@ -401,6 +436,7 @@ footer{border-top:1px solid var(--linha)}
     </div>
   </section>
 
+  <div class="wdiv" aria-hidden="true" style="background:linear-gradient(#0B0F1A 50%,#141B2D 50%)"><svg viewBox="0 0 2400 90" preserveAspectRatio="none"><path d="M0 45 Q 60 17 120 45 T 240 45 Q 300 17 360 45 T 480 45 Q 540 17 600 45 T 720 45 Q 780 17 840 45 T 960 45 Q 1020 17 1080 45 T 1200 45 Q 1260 17 1320 45 T 1440 45 Q 1500 17 1560 45 T 1680 45 Q 1740 17 1800 45 T 1920 45 Q 1980 17 2040 45 T 2160 45 Q 2220 17 2280 45 T 2400 45 V90 H0Z" fill="#141B2D"/><path d="M0 45 Q 60 17 120 45 T 240 45 Q 300 17 360 45 T 480 45 Q 540 17 600 45 T 720 45 Q 780 17 840 45 T 960 45 Q 1020 17 1080 45 T 1200 45 Q 1260 17 1320 45 T 1440 45 Q 1500 17 1560 45 T 1680 45 Q 1740 17 1800 45 T 1920 45 Q 1980 17 2040 45 T 2160 45 Q 2220 17 2280 45 T 2400 45" fill="none" stroke="#C6FF3D" stroke-opacity=".5" stroke-width="2"/></svg><svg class="b" viewBox="0 0 2400 90" preserveAspectRatio="none"><path d="M0 45 Q 60 17 120 45 T 240 45 Q 300 17 360 45 T 480 45 Q 540 17 600 45 T 720 45 Q 780 17 840 45 T 960 45 Q 1020 17 1080 45 T 1200 45 Q 1260 17 1320 45 T 1440 45 Q 1500 17 1560 45 T 1680 45 Q 1740 17 1800 45 T 1920 45 Q 1980 17 2040 45 T 2160 45 Q 2220 17 2280 45 T 2400 45" fill="none" stroke="#F2F5FA" stroke-opacity=".12" stroke-width="1.5"/></svg></div>
   <section class="band alt" id="processo">
     <div class="wrap">
       <div class="head">
@@ -451,16 +487,19 @@ footer{border-top:1px solid var(--linha)}
   function draw(){
     ctx.clearRect(0,0,W,H);
     for (var i = 0; i < 6; i++){
-      var amp = (18 + i*9) * (0.7 + mx*0.6), base = H*(0.62 + i*0.045), f = 0.006 - i*0.0006;
+      var amp = (22 + i*10) * (0.6 + mx*0.7) * (0.85 + Math.sin(t*0.7 + i)*0.25), base = H*(0.62 + i*0.045), f = 0.006 - i*0.0006;
       ctx.beginPath();
       for (var x = 0; x <= W; x += 6){ var y = base + Math.sin(x*f + t*(0.6+i*0.12) + i) * amp; x ? ctx.lineTo(x,y) : ctx.moveTo(x,y); }
       ctx.strokeStyle = i === 2 ? 'rgba(198,255,61,.55)' : 'rgba(242,245,250,' + (0.05 + i*0.012) + ')';
       ctx.lineWidth = i === 2 ? 2 : 1.2; ctx.stroke();
     }
   }
-  function loop(){ if (running){ t += 0.012; draw(); } requestAnimationFrame(loop); }
+  var speed = reduce ? 0.006 : 0.014, my = .5;
+  function loop(){ if (running){ t += speed; draw(); } requestAnimationFrame(loop); }
   size(); draw(); addEventListener('resize', function(){ size(); draw(); });
-  if (!reduce){
+  var glow = document.getElementById('glow'), hero = document.querySelector('.hero');
+  hero.addEventListener('pointermove', function(e){ var r = hero.getBoundingClientRect(); glow.style.left = (e.clientX - r.left) + 'px'; glow.style.top = (e.clientY - r.top) + 'px'; });
+  {
     addEventListener('pointermove', function(e){ mx = e.clientX / innerWidth; }, {passive:true});
     if ('IntersectionObserver' in window) new IntersectionObserver(function(es){ running = es[0].isIntersecting; }).observe(cv);
     requestAnimationFrame(loop);
@@ -468,14 +507,14 @@ footer{border-top:1px solid var(--linha)}
 
   // palavra que troca no título
   var words = ['aparecer','vender','ser lembrada'], wi = 0, rot = document.getElementById('rot');
-  if (!reduce) setInterval(function(){ rot.classList.add('out'); setTimeout(function(){ wi = (wi+1) % words.length; rot.textContent = words[wi]; rot.classList.remove('out'); }, 350); }, 2600);
+  setInterval(function(){ rot.classList.add('out'); setTimeout(function(){ wi = (wi+1) % words.length; rot.textContent = words[wi]; rot.classList.remove('out'); }, 350); }, 2600);
 
   // telas da Cunha
   var shots = document.querySelectorAll('#screens img'), cbtn = [0,1,2,3].map(function(i){ return document.getElementById('cs'+i); }), ci = 0, auto;
   var curl = document.getElementById('curl');
   function showC(i){ ci = i; curl.textContent = i === 3 ? 'cunha-importadoss.vercel.app/painel' : 'cunha-importadoss.vercel.app'; shots.forEach(function(im,k){ im.classList.toggle('on', k===i); }); cbtn.forEach(function(b,k){ b.setAttribute('aria-pressed', k===i); }); }
   cbtn.forEach(function(b,i){ b.addEventListener('click', function(){ clearInterval(auto); showC(i); }); });
-  if (!reduce) auto = setInterval(function(){ showC((ci+1) % 4); }, 3200);
+  auto = setInterval(function(){ showC((ci+1) % 4); }, 3200);
 
   // carrosséis da Saracura
   var strip = document.getElementById('strip'), sets = [['xampus',9,'Xampus naturais'],['chas',8,'Chás funcionais']], sbtn = [0,1].map(function(i){ return document.getElementById('ss'+i); });
@@ -496,11 +535,27 @@ footer{border-top:1px solid var(--linha)}
   addEventListener('pointerup', function(){ if (!down) return; down = false; strip.style.scrollSnapType = ''; strip.style.cursor = ''; });
   addEventListener('pointermove', function(e){ if (down) strip.scrollLeft = sl - (e.clientX - sx); });
 
+  if (matchMedia('(hover:hover)').matches) document.querySelectorAll('.card, .stage .browser, .proof, .editor').forEach(function(el){
+    el.classList.add('tilt');
+    el.addEventListener('pointermove', function(e){ var r = el.getBoundingClientRect(), x = (e.clientX - r.left)/r.width - .5, y = (e.clientY - r.top)/r.height - .5; el.style.transform = 'perspective(900px) rotateY(' + (x*7) + 'deg) rotateX(' + (-y*7) + 'deg) translateY(-3px)'; });
+    el.addEventListener('pointerleave', function(){ el.style.transform = ''; });
+  });
+  // botão da chamada final puxado pelo mouse
+  var cb = document.querySelector('.cta .btn');
+  if (cb) { cb.addEventListener('pointermove', function(e){ var r = cb.getBoundingClientRect(); cb.style.transform = 'translate(' + ((e.clientX - r.left - r.width/2)*.25) + 'px,' + ((e.clientY - r.top - r.height/2)*.35) + 'px)'; }); cb.addEventListener('pointerleave', function(){ cb.style.transform = ''; }); }
+
   if (!('IntersectionObserver' in window)) return;
   // entrada suave dos trabalhos
-  if (!reduce){
+  {
     var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, {threshold:.15});
     document.querySelectorAll('.stage,.code').forEach(function(el){ if (el.getBoundingClientRect().top > innerHeight){ el.classList.add('reveal'); io.observe(el); } });
+    // títulos, cards, listas e passos entram em sequência
+    function below(el){ return el.getBoundingClientRect().top > innerHeight; }
+    document.querySelectorAll('.head, .info').forEach(function(el){ if (below(el)){ el.classList.add('r'); io.observe(el); } });
+    document.querySelectorAll('.svc, .skills, .steps').forEach(function(g){
+      [].forEach.call(g.children, function(c, k){ if (below(c)){ c.classList.add('r'); c.style.setProperty('--d', (k*0.12)+'s'); io.observe(c); } });
+    });
+    document.querySelectorAll('.steps, .skill').forEach(function(el, k){ if (below(el)){ el.style.setProperty('--p', 0); var o = new IntersectionObserver(function(es){ if (es[0].isIntersecting){ el.style.setProperty('--p', 1); o.disconnect(); } }, {threshold:.3}); o.observe(el); } });
   }
   // botão fixo some perto dos outros botões de WhatsApp
   var wa = document.getElementById('wa'), seen = new Set();
