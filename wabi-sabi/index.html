@@ -59,13 +59,27 @@
   }]
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Como faço meu pedido?","acceptedAnswer":{"@type":"Answer","text":"Escolha os pratos no cardápio on-line e envie sua mensagem pelo WhatsApp (51) 99915-4298. A equipe confirma o pedido, a taxa de entrega e o tempo de preparo."}},
+    {"@type":"Question","name":"Vocês fazem delivery?","acceptedAnswer":{"@type":"Answer","text":"Sim. Atendemos por delivery e também por retirada. A taxa de entrega é informada pelo WhatsApp, de acordo com o seu endereço."}},
+    {"@type":"Question","name":"Qual é o horário de atendimento?","acceptedAnswer":{"@type":"Answer","text":"Atendemos todos os dias, das 9h às 23h."}},
+    {"@type":"Question","name":"Como funciona o festival individual?","acceptedAnswer":{"@type":"Answer","text":"É uma sequência completa para uma pessoa, com entrada, prato principal com niguiris, gunkans, uramakis e hossomakis, e sobremesa, por R$ 149,90."}},
+    {"@type":"Question","name":"Tem opções sem arroz ou vegetarianas?","acceptedAnswer":{"@type":"Answer","text":"Sim. Temos a linha sem arroz, a linha vegetariana com shimeji e a linha burguês, enrolada no salmão em vez da alga."}},
+    {"@type":"Question","name":"Não conheço as peças. Como escolho?","acceptedAnswer":{"@type":"Answer","text":"No fim do cardápio on-line há um guia com foto e explicação de cada peça, como niguiri, gunkan, uramaki e hot roll, além de um dicionário dos termos."}}
+  ]
+}
+</script>
 
 <style>
-/* Layout: capa centralizada sobre foto escurecida, seções alternando preto e grafite, uma coluna estreita como uma carta de restaurante */
+/* Layout: linha editorial com títulos em minúsculas; capa de ponta a ponta sobre foto, faixas de fotos largas, blocos numerados, frase de filosofia, perguntas e contato */
 :root{
   --ink:#0a0a0a;
   --band:#121211;
-  --line:#2b2b2b;
+  --line:#2a2a28;
   --washi:#f4f4f1;
   --mist:#a3a39e;
   --f-display:"Cormorant Garamond","Garamond","Didot",Georgia,serif;
@@ -73,120 +87,161 @@
   color-scheme:dark;
 }
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:72px}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:68px}
 @media (prefers-reduced-motion:reduce){html:not(.motion){scroll-behavior:auto}}
-body{margin:0;background:var(--ink);color:var(--washi);font-family:var(--f-body);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--ink);color:var(--washi);font-family:var(--f-body);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
 img{max-width:100%;display:block}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--washi);outline-offset:3px;border-radius:4px}
-.wrap{max-width:1040px;margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
-h1,h2,h3{font-family:var(--f-display);font-weight:600;line-height:1.05;margin:0;text-wrap:balance}
-h2{font-size:clamp(34px,6vw,52px)}
-h3{font-size:24px}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-display);font-weight:500;line-height:1;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font-size:clamp(44px,8vw,84px)}
+h3{font-size:26px;line-height:1.1}
 p{margin:0}
-.lead{color:var(--mist);max-width:56ch}
+.label{font-size:11.5px;letter-spacing:.24em;text-transform:lowercase;color:var(--mist)}
+.label::before{content:"";display:inline-block;width:22px;height:1px;background:currentColor;vertical-align:middle;margin-right:12px;opacity:.7}
+.body{color:var(--mist);max-width:52ch}
 
 /* botões */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 26px;border-radius:999px;font-family:var(--f-body);font-size:14px;letter-spacing:.06em;text-decoration:none;border:1px solid var(--washi);transition:background .25s,color .25s,border-color .25s}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 26px;border-radius:999px;font-family:var(--f-body);font-size:13.5px;letter-spacing:.08em;text-transform:lowercase;text-decoration:none;border:1px solid var(--washi);transition:background .25s,color .25s,border-color .25s}
 .btn svg{width:18px;height:18px;flex:none}
 .btn-main{background:var(--washi);color:var(--ink)}
-.btn-ghost{color:var(--washi);border-color:rgba(244,244,241,.35)}
+.btn-ghost{color:var(--washi);border-color:rgba(244,244,241,.4);background:rgba(10,10,10,.25)}
 @media (hover:hover){.btn-main:hover{background:transparent;color:var(--washi)}.btn-ghost:hover{border-color:var(--washi)}}
-.ctas{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+.link{display:inline-flex;align-items:center;gap:10px;font-size:13px;letter-spacing:.1em;text-transform:lowercase;text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:4px;transition:border-color .25s}
+.link:hover{border-color:var(--washi)}
 
 /* topo */
-.top{position:sticky;top:0;z-index:20;background:rgba(10,10,10,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .3s;padding-top:env(safe-area-inset-top,0px)}
-.top.scrolled{border-color:var(--line)}
-.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
-.brand{display:block;width:118px;height:40px;background:url("/wabi-sabi/logo.webp") left center/contain no-repeat;font-size:0}
-.nav{display:flex;align-items:center;gap:26px}
-.nav a{text-decoration:none;font-size:13px;letter-spacing:.08em;color:var(--mist)}
+.top{position:fixed;top:0;left:0;right:0;z-index:20;padding-top:env(safe-area-inset-top,0px);transition:background .35s,border-color .35s;border-bottom:1px solid transparent}
+.top.scrolled{background:rgba(10,10,10,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-color:var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:66px}
+.brand{display:block;width:112px;height:40px;background:url("/wabi-sabi/logo.webp") left center/contain no-repeat;font-size:0}
+.nav{display:flex;align-items:center;gap:24px}
+.nav a{text-decoration:none;font-size:13px;letter-spacing:.08em;color:var(--mist);text-transform:lowercase}
 .nav a:hover{color:var(--washi)}
 .nav .btn{min-height:40px;padding:0 18px;font-size:12.5px;color:var(--ink)}
-@media (max-width:720px){.nav .lnk{display:none}}
+@media (max-width:860px){.nav .lnk{display:none}}
 
 /* capa */
-.hero{position:relative;overflow:hidden;text-align:center;isolation:isolate}
-.hero-bg{position:absolute;inset:0;z-index:-1}
-.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.32;transform:scale(1.04);animation:drift 18s ease-out both}
-.hero-bg::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(10,10,10,.35),var(--ink) 78%)}
-@keyframes drift{from{transform:scale(1.12)}to{transform:scale(1.04)}}
-.hero .wrap{padding-block:clamp(56px,11vw,120px) clamp(64px,11vw,120px);display:grid;justify-items:center;gap:22px}
-.hero-logo{width:min(420px,84vw);height:auto;aspect-ratio:720/408}
-.hero h1{font-size:clamp(30px,6.4vw,54px);font-weight:500;font-style:italic;max-width:18ch}
-.hero .lead{font-size:16px;max-width:46ch}
-.status{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--mist);border:1px solid var(--line);border-radius:999px;padding:6px 14px;background:rgba(10,10,10,.5)}
-.dot{width:8px;height:8px;border-radius:50%;background:#7fbf6a}
+.hero{position:relative;min-height:min(100svh,900px);display:flex;align-items:flex-end;isolation:isolate;overflow:hidden}
+.hero > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;animation:settle 14s ease-out both}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(to top,var(--ink) 4%,rgba(10,10,10,.72) 42%,rgba(10,10,10,.35) 75%,rgba(10,10,10,.6))}
+@keyframes settle{from{transform:scale(1.1)}to{transform:scale(1)}}
+.hero .wrap{width:100%;padding-block:120px 44px;display:grid;gap:22px}
+.hero h1{font-size:clamp(54px,12vw,128px);font-style:italic;max-width:11ch;line-height:.92}
+.hero .body{color:#cfcfca;font-size:16px;max-width:44ch}
+.hero-foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:22px;margin-top:10px}
+.status{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:#cfcfca;letter-spacing:.04em}
+.dot{width:7px;height:7px;border-radius:50%;background:#7fbf6a}
 .dot.off{background:#c8372d}
+.scroll{font-size:11px;letter-spacing:.3em;color:var(--mist);text-decoration:none;display:flex;align-items:center;gap:10px}
+.scroll i{width:1px;height:34px;background:linear-gradient(var(--mist),transparent)}
+@media (max-width:640px){.scroll{display:none}}
 
 /* seções */
-section{padding-block:clamp(64px,10vw,110px)}
+section{padding-block:clamp(80px,12vw,150px)}
 .band{background:var(--band)}
-.head{display:grid;gap:14px;justify-items:center;text-align:center;margin-bottom:clamp(34px,5vw,52px)}
-.rule{width:48px;height:1px;background:var(--washi);opacity:.4}
 
-/* sobre */
-.about{display:grid;gap:clamp(32px,6vw,64px);align-items:center}
-.about .txt{display:grid;gap:18px;text-align:center;justify-items:center}
-.about .txt p{color:var(--mist);max-width:54ch}
-.about .txt p strong{color:var(--washi);font-weight:400}
-.kanji{font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;font-size:clamp(70px,14vw,120px);line-height:1;letter-spacing:.08em;opacity:.12}
-.about figure{margin:0;position:relative;aspect-ratio:4/5;max-width:420px;width:100%;justify-self:center;overflow:hidden;border-radius:4px;border:1px solid var(--line)}
-.about figure img{width:100%;height:100%;object-fit:cover}
-@media (min-width:860px){.about{grid-template-columns:1fr 1fr}.about .txt{text-align:left;justify-items:start}}
+/* o restaurante */
+.split{display:grid;gap:clamp(40px,7vw,90px);align-items:center}
+.split .txt{display:grid;gap:24px;justify-items:start}
+.split figure{margin:0;aspect-ratio:4/5;overflow:hidden;border-radius:2px}
+.split figure img{width:100%;height:100%;object-fit:cover}
+@media (min-width:880px){.split{grid-template-columns:1.05fr .95fr}}
 
-/* destaques */
-.dishes{display:grid;gap:14px;grid-template-columns:repeat(2,minmax(0,1fr))}
-@media (min-width:860px){.dishes{grid-template-columns:repeat(4,minmax(0,1fr))}}
-.dish{display:flex;flex-direction:column;background:var(--ink);border:1px solid var(--line);border-radius:4px;overflow:hidden;text-decoration:none;min-width:0;transition:border-color .3s}
-@media (hover:hover){.dish:hover{border-color:rgba(244,244,241,.5)}.dish:hover img{transform:scale(1.05)}}
-.dish .ph{aspect-ratio:1;overflow:hidden;background:#161615}
-.dish img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
-.dish .tx{padding:14px 16px 16px;display:grid;gap:6px;flex:1;align-content:start}
-.dish h3{font-size:21px}
-.dish p{color:var(--mist);font-size:13px;line-height:1.45}
-.dish .price{font-size:13px;letter-spacing:.05em;margin-top:auto;padding-top:6px}
-.more{display:flex;justify-content:center;margin-top:34px}
+/* a cozinha */
+.strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;padding-inline:4px}
+.strip figure{margin:0;aspect-ratio:3/4;overflow:hidden;position:relative}
+.strip img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+@media (hover:hover){.strip figure:hover img{transform:scale(1.05)}}
+.strip figcaption{position:absolute;left:14px;bottom:12px;font-size:11.5px;letter-spacing:.14em;text-transform:lowercase;color:#e8e8e4;text-shadow:0 1px 8px rgba(0,0,0,.8)}
+@media (max-width:720px){.strip{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.kitchen{padding-block:0 clamp(80px,12vw,150px)}
+.kitchen .wrap{display:grid;gap:22px;padding-top:clamp(48px,7vw,80px)}
+@media (min-width:880px){.kitchen .wrap{grid-template-columns:1fr 1fr;align-items:end}}
+
+/* pratos */
+.head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:clamp(34px,5vw,56px)}
+.head > div{display:grid;gap:18px}
+.dishes{display:grid;gap:clamp(14px,2vw,22px);grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (min-width:880px){.dishes{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.dish{display:grid;gap:14px;text-decoration:none;min-width:0}
+.dish .ph{aspect-ratio:3/4;overflow:hidden;border-radius:2px;background:#161615}
+.dish img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.2,.8,.2,1)}
+@media (hover:hover){.dish:hover img{transform:scale(1.05)}}
+.dish .tag{font-size:11px;letter-spacing:.22em;text-transform:lowercase;color:var(--mist)}
+.dish h3{font-size:clamp(22px,2.4vw,28px)}
+.dish .price{font-size:13px;color:var(--mist);letter-spacing:.04em}
 
 /* do seu jeito */
-.ways{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden}
-@media (min-width:720px){.ways{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.way{background:var(--band);padding:28px 24px;display:grid;gap:10px;align-content:start}
-.way .k{font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;font-size:30px;opacity:.35;line-height:1}
-.way p{color:var(--mist);font-size:14px}
-.way .tag{font-size:12.5px;letter-spacing:.06em;color:var(--washi)}
+.ways{display:grid;gap:clamp(40px,6vw,64px)}
+.way{display:grid;gap:22px;align-items:center}
+.way figure{margin:0;aspect-ratio:16/10;overflow:hidden;border-radius:2px}
+.way figure img{width:100%;height:100%;object-fit:cover}
+.way .tx{display:grid;gap:14px;align-content:start}
+.way .n{font-family:var(--f-display);font-style:italic;font-size:22px;color:var(--mist)}
+.way .tx p{color:var(--mist);max-width:44ch}
+.way .tx strong{font-weight:400;color:var(--washi);font-size:14px;letter-spacing:.04em}
+@media (min-width:880px){
+ .way{grid-template-columns:1.2fr 1fr;gap:64px}
+ .way:nth-child(even) figure{order:2}
+}
 
-/* contato */
-.contact{display:grid;gap:32px;text-align:center;justify-items:center}
-.info{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden;width:100%;max-width:760px}
-@media (min-width:720px){.info{grid-template-columns:repeat(3,minmax(0,1fr))}}
-.info div{background:var(--ink);padding:24px 18px;display:grid;gap:6px;justify-items:center}
-.info span{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mist)}
-.info strong{font-family:var(--f-display);font-weight:600;font-size:24px;line-height:1.2}
-.copy{background:none;border:0;color:var(--mist);font:inherit;font-size:12px;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:4px}
+/* filosofia */
+.quote{text-align:center}
+.quote .wrap{display:grid;justify-items:center;gap:30px}
+.quote .kj{font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;font-size:clamp(44px,8vw,72px);letter-spacing:.16em;opacity:.18;line-height:1}
+.quote blockquote{margin:0;font-family:var(--f-display);font-style:italic;font-size:clamp(32px,5.6vw,62px);line-height:1.12;max-width:20ch;text-wrap:balance}
+
+/* perguntas */
+.faq{display:grid;gap:clamp(30px,5vw,60px)}
+@media (min-width:880px){.faq{grid-template-columns:.8fr 1.2fr}}
+.qs{border-top:1px solid var(--line)}
+.qs details{border-bottom:1px solid var(--line)}
+.qs summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:18px;padding:22px 0;font-family:var(--f-display);font-size:clamp(21px,2.4vw,26px);line-height:1.2}
+.qs summary::-webkit-details-marker{display:none}
+.qs summary::after{content:"+";font-family:var(--f-body);font-size:20px;color:var(--mist);transition:transform .3s;flex:none}
+.qs details[open] summary::after{transform:rotate(45deg)}
+.qs details p{color:var(--mist);padding:0 0 24px;max-width:60ch}
+.qs a{color:var(--washi)}
+
+/* peça */
+.order{display:grid;gap:clamp(40px,6vw,80px);align-items:center}
+@media (min-width:880px){.order{grid-template-columns:1fr 1fr}}
+.order .txt{display:grid;gap:24px;justify-items:start}
+.facts{display:grid;gap:0;width:100%;border-top:1px solid var(--line)}
+.facts div{display:flex;justify-content:space-between;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);align-items:baseline;flex-wrap:wrap}
+.facts span{font-size:12px;letter-spacing:.2em;text-transform:lowercase;color:var(--mist)}
+.facts strong{font-family:var(--f-display);font-weight:500;font-size:24px;line-height:1.2}
+.copy{background:none;border:0;color:var(--mist);font:inherit;font-size:12px;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:4px 0}
 .copy:hover{color:var(--washi)}
+.order figure{margin:0;aspect-ratio:4/5;overflow:hidden;border-radius:2px}
+.order figure img{width:100%;height:100%;object-fit:cover}
 
 /* rodapé */
-footer{border-top:1px solid var(--line);padding-block:40px calc(40px + env(safe-area-inset-bottom,0px));text-align:center;color:var(--mist);font-size:13px}
-footer .wrap{display:grid;gap:14px;justify-items:center}
-footer img{width:150px;height:auto;opacity:.85}
-footer nav{display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:center}
-footer a{text-decoration:none}
-footer a:hover{color:var(--washi)}
-.credit{font-size:11.5px;opacity:.7}
+footer{border-top:1px solid var(--line);padding-block:56px calc(40px + env(safe-area-inset-bottom,0px));color:var(--mist);font-size:13px}
+.fgrid{display:grid;gap:36px}
+@media (min-width:880px){.fgrid{grid-template-columns:1.3fr 1fr 1fr}}
+.fgrid img{width:170px;height:auto}
+.fgrid h3{font-family:var(--f-body);font-size:11.5px;letter-spacing:.22em;text-transform:lowercase;color:var(--washi);margin-bottom:14px;font-weight:400}
+.fgrid nav,.fgrid .ct{display:grid;gap:8px}
+.fgrid a{text-decoration:none}
+.fgrid a:hover{color:var(--washi)}
+.fbase{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;margin-top:44px;padding-top:22px;border-top:1px solid var(--line);font-size:11.5px}
 
-/* botão fixo no celular */
+/* barra fixa no celular */
 .dock{position:fixed;left:0;right:0;bottom:0;z-index:15;display:flex;gap:10px;padding:10px max(14px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(14px,env(safe-area-inset-left,0px));background:linear-gradient(to top,var(--ink) 55%,transparent);transform:translateY(110%);transition:transform .35s ease}
 .dock.on{transform:none}
 .dock .btn{flex:1;min-height:48px;padding:0 14px}
 .dock .btn-ghost{flex:0 0 auto;width:48px;padding:0;background:var(--ink)}
-@media (min-width:721px){.dock{display:none}}
-@media (max-width:720px){footer{padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}}
+@media (min-width:861px){.dock{display:none}}
+@media (max-width:860px){footer{padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}}
 
 /* entrada suave das imagens */
-.rv{opacity:0;transform:translateY(14px) scale(.985);transition:opacity .9s ease,transform 1.1s cubic-bezier(.2,.8,.2,1)}
+.rv{opacity:0;transform:scale(1.06);transition:opacity 1s ease,transform 1.4s cubic-bezier(.2,.8,.2,1)}
 .rv.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){html:not(.motion) .rv{opacity:1;transform:none;transition:none}html:not(.motion) .hero-bg img{animation:none}}
+@media (prefers-reduced-motion:reduce){html:not(.motion) .rv{opacity:1;transform:none;transition:none}html:not(.motion) .hero > img{animation:none}}
 </style>
 </head>
 <body>
@@ -195,126 +250,165 @@ footer a:hover{color:var(--washi)}
   <div class="wrap">
     <a class="brand" href="#inicio" aria-label="Wabi Sabi, voltar ao início">Wabi Sabi</a>
     <nav class="nav" aria-label="Principal">
-      <a class="lnk" href="#sobre">Sobre</a>
-      <a class="lnk" href="#favoritos">Favoritos</a>
-      <a class="lnk" href="#contato">Contato</a>
-      <a class="btn btn-main" href="/wabi-sabi/cardapio/" data-track="clique_cardapio" data-loc="topo">Ver cardápio</a>
+      <a class="lnk" href="#restaurante">restaurante</a>
+      <a class="lnk" href="#cozinha">cozinha</a>
+      <a class="lnk" href="#pratos">pratos</a>
+      <a class="lnk" href="#perguntas">perguntas</a>
+      <a class="lnk" href="#peca">peça</a>
+      <a class="btn btn-main" href="/wabi-sabi/cardapio/" data-track="clique_cardapio" data-loc="topo">ver cardápio</a>
     </nav>
   </div>
 </header>
 
 <main id="inicio">
   <section class="hero" style="padding:0" aria-labelledby="titulo">
-    <div class="hero-bg" aria-hidden="true">
-      <img src="https://assets.olaclick.app/companies/products/images/800/96ea05de-0019-4f6c-9428-74253e00fe6b.jpg" alt="" width="800" height="800" fetchpriority="high" decoding="async">
+    <img src="https://assets.olaclick.app/companies/products/images/800/96ea05de-0019-4f6c-9428-74253e00fe6b.jpg" alt="" width="800" height="800" fetchpriority="high" decoding="async">
+    <div class="wrap">
+      <span class="label">wabi sabi · culinária japonesa · delivery e retirada</span>
+      <h1 id="titulo">a beleza do simples</h1>
+      <p class="body">Sushi, temakis, combinados e pratos quentes feitos peça por peça, com o cuidado de quem enxerga beleza no que é simples.</p>
+      <div class="hero-foot">
+        <div class="ctas">
+          <a class="btn btn-main" href="/wabi-sabi/cardapio/" data-track="clique_cardapio" data-loc="capa">ver cardápio</a>
+          <a class="btn btn-ghost" href="https://wa.me/5551999154298?text=Ol%C3%A1%2C%20Wabi%20Sabi!%20Vim%20pelo%20site." target="_blank" rel="noopener" data-track="clique_whatsapp" data-loc="capa"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.3-.5 0-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.3.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.1.1.6-.1 1.3Z"/></svg>pedir pelo whatsapp</a>
+        </div>
+        <span class="status"><i class="dot" id="dot"></i><span id="status">todos os dias, das 9h às 23h</span></span>
+        <a class="scroll" href="#restaurante"><i></i>descer · explorar</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="restaurante" aria-labelledby="rest-t">
+    <div class="wrap split">
+      <div class="txt">
+        <span class="label">o restaurante</span>
+        <h2 id="rest-t">feito com calma</h2>
+        <p class="body"><strong style="color:var(--washi);font-weight:400">Wabi-sabi</strong> é uma ideia japonesa: encontrar beleza no que é simples, natural e feito sem pressa. É assim que pensamos a nossa cozinha.</p>
+        <p class="body">Peixe fresco, arroz no ponto e combinações que respeitam o sabor de cada ingrediente. Do sashimi mais puro às criações da casa, cada peça é montada para ser lembrada.</p>
+        <a class="link" href="#cozinha">conhecer a cozinha →</a>
+      </div>
+      <figure><img class="rv" src="https://assets.olaclick.app/companies/products/images/800/e22d610c-a26a-4e54-a9ab-1ba897f4a963.jpeg" alt="Tartar de salmão trufado com ovas de tobiko e gema de codorna" width="800" height="1000" loading="lazy" decoding="async"></figure>
+    </div>
+  </section>
+
+  <section class="band kitchen" id="cozinha" aria-labelledby="coz-t">
+    <div class="strip">
+      <figure><img class="rv" src="https://assets.olaclick.app/companies/products/images/800/98b16114-c216-4737-9b38-a23ad6f5706b.JPG" alt="Festival individual com entrada, peças variadas e espumante" width="800" height="1066" loading="lazy" decoding="async"><figcaption>festival</figcaption></figure>
+      <figure><img class="rv" src="https://assets.olaclick.app/companies/products/images/800/22340357-8ca2-4746-9394-5014b3bb08f9.JPG" alt="Temaki dos Deuses" width="800" height="1066" loading="lazy" decoding="async"><figcaption>temakis</figcaption></figure>
+      <figure><img class="rv" src="https://assets.olaclick.app/companies/products/images/800/dcf9526c-e1a8-41f2-a46e-d21922b5866c.png" alt="Combinado Saisei com 54 peças" width="800" height="1066" loading="lazy" decoding="async"><figcaption>combinados</figcaption></figure>
+      <figure><img class="rv" src="https://assets.olaclick.app/companies/products/images/800/e5fefabb-98ca-4bbf-8958-e300f2e8780a.JPG" alt="Risoto de camarão" width="800" height="1066" loading="lazy" decoding="async"><figcaption>pratos quentes</figcaption></figure>
     </div>
     <div class="wrap">
-      <img class="hero-logo" src="/wabi-sabi/logo.webp" width="720" height="408" alt="Wabi Sabi Culinária Japonesa" fetchpriority="high">
-      <h1 id="titulo">Sushi e culinária japonesa feitos peça por peça.</h1>
-      <p class="lead">Combinados, temakis, hots, pokes e pratos quentes, preparados com o cuidado de quem enxerga beleza no simples.</p>
-      <span class="status"><i class="dot" id="dot"></i><span id="status">Todos os dias, das 9h às 23h</span></span>
-      <div class="ctas">
-        <a class="btn btn-main" href="/wabi-sabi/cardapio/" data-track="clique_cardapio" data-loc="capa">Ver cardápio</a>
-        <a class="btn btn-ghost" href="https://wa.me/5551999154298?text=Ol%C3%A1%2C%20Wabi%20Sabi!%20Vim%20pelo%20site." target="_blank" rel="noopener" data-track="clique_whatsapp" data-loc="capa"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.3-.5 0-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.3.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.1.1.6-.1 1.3Z"/></svg>Pedir pelo WhatsApp</a>
-      </div>
+      <div style="display:grid;gap:18px"><span class="label">a cozinha</span><h2 id="coz-t">do cru ao quente</h2></div>
+      <p class="body">Sashimis e niguiris de corte preciso, hots crocantes saídos na hora, pokes, yakisobas e risotos cremosos. Uma cozinha japonesa completa, do primeiro ao último prato.</p>
     </div>
   </section>
 
-  <section class="band" id="sobre" aria-labelledby="sobre-t">
-    <div class="wrap about">
-      <div class="txt">
-        <span class="kanji" aria-hidden="true">侘寂</span>
-        <h2 id="sobre-t">A beleza do simples</h2>
-        <span class="rule"></span>
-        <p><strong>Wabi-sabi</strong> é uma ideia japonesa: encontrar beleza no que é simples, natural e feito com calma. É assim que pensamos a nossa cozinha.</p>
-        <p>Peixe fresco, arroz no ponto e combinações que respeitam o sabor de cada ingrediente. Do sashimi mais puro às criações da casa, como o Temaki Burguês enrolado no salmão, cada peça é montada para ser lembrada.</p>
-      </div>
-      <figure>
-        <img class="rv" src="https://assets.olaclick.app/companies/products/images/800/e22d610c-a26a-4e54-a9ab-1ba897f4a963.jpeg" alt="Tartar de salmão trufado com ovas de tobiko e gema de codorna" width="800" height="1000" loading="lazy" decoding="async">
-      </figure>
-    </div>
-  </section>
-
-  <section id="favoritos" aria-labelledby="fav-t">
+  <section id="pratos" aria-labelledby="pratos-t">
     <div class="wrap">
       <div class="head">
-        <h2 id="fav-t">Os favoritos da casa</h2>
-        <span class="rule"></span>
-        <p class="lead">Os pratos que mais saem da nossa cozinha.</p>
+        <div><span class="label">pratos</span><h2 id="pratos-t">para provar</h2></div>
+        <a class="link" href="/wabi-sabi/cardapio/" data-track="clique_cardapio" data-loc="pratos_topo">ver cardápio completo →</a>
       </div>
       <div class="dishes">
-        <a class="dish" href="/wabi-sabi/cardapio/" data-track="clique_cardapio" data-loc="favorito_temaki">
-          <div class="ph"><img class="rv" src="https://assets.olaclick.app/companies/products/images/800/22340357-8ca2-4746-9394-5014b3bb08f9.JPG" alt="Temaki dos Deuses com salmão e camarão empanado" width="800" height="800" loading="lazy" decoding="async"></div>
-          <div class="tx"><h3>Temaki dos Deuses</h3><p>Salmão, camarão empanado, cream cheese, tarê e alho-poró.</p><span class="price">R$ 42,90</span></div>
+        <a class="dish" href="/wabi-sabi/cardapio/" data-track="clique_cardapio" data-loc="prato_burgues">
+          <div class="ph"><img class="rv" src="https://assets.olaclick.app/companies/products/images/800/d495da0a-a758-438f-936a-37e5f8f647ba.jpeg" alt="Temaki Burguês enrolado no salmão, sem alga" width="800" height="1066" loading="lazy" decoding="async"></div>
+          <span class="tag">autoral</span><h3>Temaki Burguês</h3><span class="price">enrolado no salmão, sem alga · R$ 52,90</span>
         </a>
-        <a class="dish" href="/wabi-sabi/cardapio/" data-track="clique_cardapio" data-loc="favorito_chefe">
-          <div class="ph"><img class="rv" src="https://assets.olaclick.app/companies/products/images/800/96ea05de-0019-4f6c-9428-74253e00fe6b.jpg" alt="Combinado do Chefe com samon maki, sashimis e gunkans" width="800" height="800" loading="lazy" decoding="async"></div>
-          <div class="tx"><h3>Combinado do Chefe</h3><p>40 peças escolhidas pelo sushiman, com criações autorais.</p><span class="price">R$ 289,90</span></div>
+        <a class="dish" href="/wabi-sabi/cardapio/" data-track="clique_cardapio" data-loc="prato_tartar">
+          <div class="ph"><img class="rv" src="https://assets.olaclick.app/companies/products/images/800/e22d610c-a26a-4e54-a9ab-1ba897f4a963.jpeg" alt="Tartar de salmão trufado" width="800" height="1066" loading="lazy" decoding="async"></div>
+          <span class="tag">frio</span><h3>Tartar Trufado</h3><span class="price">salmão, trufa e tobiko · R$ 68,90</span>
         </a>
-        <a class="dish" href="/wabi-sabi/cardapio/" data-track="clique_cardapio" data-loc="favorito_saisei">
-          <div class="ph"><img class="rv" src="https://assets.olaclick.app/companies/products/images/800/dcf9526c-e1a8-41f2-a46e-d21922b5866c.png" alt="Combinado Saisei com 54 peças" width="800" height="800" loading="lazy" decoding="async"></div>
-          <div class="tx"><h3>Saisei 54 peças</h3><p>Sashimis, hots, uramakis, hossomakis e niguiris para dividir.</p><span class="price">R$ 129,90</span></div>
+        <a class="dish" href="/wabi-sabi/cardapio/" data-track="clique_cardapio" data-loc="prato_chefe">
+          <div class="ph"><img class="rv" src="https://assets.olaclick.app/companies/products/images/800/96ea05de-0019-4f6c-9428-74253e00fe6b.jpg" alt="Combinado do Chefe" width="800" height="1066" loading="lazy" decoding="async"></div>
+          <span class="tag">autoral</span><h3>Combinado do Chefe</h3><span class="price">40 peças da casa · R$ 289,90</span>
         </a>
-        <a class="dish" href="/wabi-sabi/cardapio/" data-track="clique_cardapio" data-loc="favorito_risoto">
-          <div class="ph"><img class="rv" src="https://assets.olaclick.app/companies/products/images/800/e5fefabb-98ca-4bbf-8958-e300f2e8780a.JPG" alt="Risoto cremoso de camarão" width="800" height="800" loading="lazy" decoding="async"></div>
-          <div class="tx"><h3>Risoto de Camarão</h3><p>Para quem prefere um prato quente e cremoso.</p><span class="price">R$ 64,90</span></div>
+        <a class="dish" href="/wabi-sabi/cardapio/" data-track="clique_cardapio" data-loc="prato_risoto">
+          <div class="ph"><img class="rv" src="https://assets.olaclick.app/companies/products/images/800/e5fefabb-98ca-4bbf-8958-e300f2e8780a.JPG" alt="Risoto cremoso de camarão" width="800" height="1066" loading="lazy" decoding="async"></div>
+          <span class="tag">quente</span><h3>Risoto de Camarão</h3><span class="price">cremoso, para dividir ou não · R$ 64,90</span>
         </a>
       </div>
-      <div class="more"><a class="btn btn-ghost" href="/wabi-sabi/cardapio/" data-track="clique_cardapio" data-loc="favoritos">Ver o cardápio completo</a></div>
     </div>
   </section>
 
   <section class="band" id="jeito" aria-labelledby="jeito-t">
     <div class="wrap">
-      <div class="head">
-        <h2 id="jeito-t">Do seu jeito</h2>
-        <span class="rule"></span>
-      </div>
+      <div class="head"><div><span class="label">do seu jeito</span><h2 id="jeito-t">para cada noite</h2></div></div>
       <div class="ways">
-        <div class="way"><span class="k" aria-hidden="true">一</span><h3>Festival individual</h3><p>Entrada, prato principal com niguiris, gunkans, uramakis e hossomakis, e sobremesa. Uma experiência completa só para você.</p><span class="tag">R$ 149,90</span></div>
-        <div class="way"><span class="k" aria-hidden="true">皆</span><h3>Combinados para dividir</h3><p>De 22 a 54 peças, nas linhas executiva e premium, para a mesa toda provar um pouco de tudo.</p><span class="tag">A partir de R$ 78,00</span></div>
-        <div class="way"><span class="k" aria-hidden="true">魚</span><h3>Linhas especiais</h3><p>Peças sem arroz, linha vegetariana com shimeji e a linha burguês, enrolada no salmão em vez da alga.</p><span class="tag">Para todos os gostos</span></div>
-        <div class="way"><span class="k" aria-hidden="true">酒</span><h3>Drinks e saquês</h3><p>Caipisaquês, mojitos, Moscow Mule, saquês aromatizados, vinhos e espumantes para acompanhar.</p><span class="tag">Carta completa no cardápio</span></div>
+        <div class="way">
+          <figure><img class="rv" src="https://assets.olaclick.app/companies/products/images/800/98b16114-c216-4737-9b38-a23ad6f5706b.JPG" alt="Festival individual" width="800" height="500" loading="lazy" decoding="async"></figure>
+          <div class="tx"><span class="n">01</span><h3>festival individual</h3><p>Entrada, prato principal com niguiris, gunkans, uramakis e hossomakis, e sobremesa. Uma sequência completa só para você.</p><strong>R$ 149,90</strong></div>
+        </div>
+        <div class="way">
+          <figure><img class="rv" src="https://assets.olaclick.app/companies/products/images/800/74200ecb-6a8c-4e55-aa1d-196b775e0c63.JPG" alt="Combinado Premium de 52 peças" width="800" height="500" loading="lazy" decoding="async"></figure>
+          <div class="tx"><span class="n">02</span><h3>combinados para dividir</h3><p>De 22 a 54 peças, nas linhas executiva e premium, para a mesa toda provar um pouco de tudo.</p><strong>a partir de R$ 78,00</strong></div>
+        </div>
+        <div class="way">
+          <figure><img class="rv" src="https://assets.olaclick.app/companies/products/images/800/3d2e3dfa-2c28-46b1-979c-f37ff1553437.JPG" alt="Combo Supremo da linha sem arroz" width="800" height="500" loading="lazy" decoding="async"></figure>
+          <div class="tx"><span class="n">03</span><h3>linhas especiais</h3><p>Peças sem arroz, linha vegetariana com shimeji e a linha burguês, enrolada no salmão em vez da alga.</p><strong>para todos os gostos</strong></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="contato" aria-labelledby="contato-t">
-    <div class="wrap contact">
-      <div class="head" style="margin-bottom:0">
-        <h2 id="contato-t">Peça pelo WhatsApp</h2>
-        <span class="rule"></span>
-        <p class="lead">Escolha no cardápio e mande sua mensagem. A gente confirma o pedido, a taxa de entrega e o tempo de preparo.</p>
+  <section class="quote" aria-label="Filosofia">
+    <div class="wrap">
+      <span class="kj" aria-hidden="true">侘寂</span>
+      <blockquote>a perfeição mora no simples, em cada peça feita sem pressa.</blockquote>
+    </div>
+  </section>
+
+  <section class="band" id="perguntas" aria-labelledby="faq-t">
+    <div class="wrap faq">
+      <div style="display:grid;gap:18px;align-content:start"><span class="label">perguntas frequentes</span><h2 id="faq-t">antes de pedir</h2></div>
+      <div class="qs">
+        <details open><summary>Como faço meu pedido?</summary><p>Escolha os pratos no <a href="/wabi-sabi/cardapio/" data-track="clique_cardapio" data-loc="faq">cardápio on-line</a> e envie sua mensagem pelo WhatsApp (51) 99915-4298. A equipe confirma o pedido, a taxa de entrega e o tempo de preparo.</p></details>
+        <details><summary>Vocês fazem delivery?</summary><p>Sim. Atendemos por delivery e também por retirada. A taxa de entrega é informada pelo WhatsApp, de acordo com o seu endereço.</p></details>
+        <details><summary>Qual é o horário de atendimento?</summary><p>Atendemos todos os dias, das 9h às 23h.</p></details>
+        <details><summary>Como funciona o festival individual?</summary><p>É uma sequência completa para uma pessoa, com entrada, prato principal com niguiris, gunkans, uramakis e hossomakis, e sobremesa, por R$ 149,90.</p></details>
+        <details><summary>Tem opções sem arroz ou vegetarianas?</summary><p>Sim. Temos a linha sem arroz, a linha vegetariana com shimeji e a linha burguês, enrolada no salmão em vez da alga.</p></details>
+        <details><summary>Não conheço as peças. Como escolho?</summary><p>No fim do cardápio on-line há um guia com foto e explicação de cada peça, como niguiri, gunkan, uramaki e hot roll, além de um dicionário dos termos.</p></details>
       </div>
-      <div class="info">
-        <div><span>WhatsApp</span><strong id="fone">(51) 99915-4298</strong><button class="copy" type="button" id="copiar">Copiar número</button></div>
-        <div><span>Horário</span><strong>Todos os dias<br>9h às 23h</strong></div>
-        <div><span>Atendimento</span><strong>Delivery<br>e retirada</strong></div>
+    </div>
+  </section>
+
+  <section id="peca" aria-labelledby="peca-t">
+    <div class="wrap order">
+      <div class="txt">
+        <span class="label">peça</span>
+        <h2 id="peca-t">a wabi sabi na sua mesa</h2>
+        <p class="body">Escolha no cardápio e mande sua mensagem. Entregamos ou você retira, como preferir.</p>
+        <div class="facts">
+          <div><span>whatsapp</span><strong id="fone">(51) 99915-4298</strong><button class="copy" type="button" id="copiar">copiar número</button></div>
+          <div><span>horário</span><strong>todos os dias, 9h às 23h</strong></div>
+          <div><span>atendimento</span><strong>delivery e retirada</strong></div>
+        </div>
+        <div class="ctas">
+          <a class="btn btn-main" href="https://wa.me/5551999154298?text=Ol%C3%A1%2C%20Wabi%20Sabi!%20Quero%20fazer%20um%20pedido." target="_blank" rel="noopener" data-track="clique_whatsapp" data-loc="peca">pedir agora</a>
+          <a class="btn btn-ghost" href="/wabi-sabi/cardapio/" data-track="clique_cardapio" data-loc="peca">ver cardápio</a>
+        </div>
       </div>
-      <div class="ctas">
-        <a class="btn btn-main" href="https://wa.me/5551999154298?text=Ol%C3%A1%2C%20Wabi%20Sabi!%20Quero%20fazer%20um%20pedido." target="_blank" rel="noopener" data-track="clique_whatsapp" data-loc="contato">Chamar no WhatsApp</a>
-        <a class="btn btn-ghost" href="/wabi-sabi/cardapio/" data-track="clique_cardapio" data-loc="contato">Ver cardápio</a>
-      </div>
+      <figure><img class="rv" src="https://assets.olaclick.app/companies/products/images/800/0d5c30a4-26dc-4186-affa-47ad7fd47152.jpeg" alt="Sequência individual servida" width="800" height="1000" loading="lazy" decoding="async"></figure>
     </div>
   </section>
 </main>
 
 <footer>
   <div class="wrap">
-    <img src="/wabi-sabi/logo.webp" width="720" height="408" alt="Wabi Sabi Culinária Japonesa" loading="lazy" decoding="async">
-    <nav aria-label="Rodapé">
-      <a href="/wabi-sabi/cardapio/" data-track="clique_cardapio" data-loc="rodape">Cardápio</a>
-      <a href="#sobre">Sobre</a>
-      <a href="#favoritos">Favoritos</a>
-      <a href="https://wa.me/5551999154298" target="_blank" rel="noopener" data-track="clique_whatsapp" data-loc="rodape">WhatsApp</a>
-    </nav>
-    <p>Wabi Sabi Culinária Japonesa</p>
-    <p class="credit">Site por <a href="https://ondazstudio.vercel.app/" target="_blank" rel="noopener">Ondaz Studio</a></p>
+    <div class="fgrid">
+      <div style="display:grid;gap:16px;align-content:start">
+        <img src="/wabi-sabi/logo.webp" width="720" height="408" alt="Wabi Sabi Culinária Japonesa" loading="lazy" decoding="async">
+        <p>a beleza do simples, peça por peça.</p>
+      </div>
+      <div><h3>navegue</h3><nav aria-label="Rodapé"><a href="/wabi-sabi/cardapio/" data-track="clique_cardapio" data-loc="rodape">cardápio</a><a href="#restaurante">restaurante</a><a href="#pratos">pratos</a><a href="#perguntas">perguntas</a></nav></div>
+      <div><h3>contato</h3><div class="ct"><a href="https://wa.me/5551999154298" target="_blank" rel="noopener" data-track="clique_whatsapp" data-loc="rodape">whatsapp (51) 99915-4298</a><span>todos os dias, 9h às 23h</span><span>delivery e retirada</span></div></div>
+    </div>
+    <div class="fbase"><span>© 2026 Wabi Sabi Culinária Japonesa</span><span>site por <a href="https://ondazstudio.vercel.app/" target="_blank" rel="noopener">Ondaz Studio</a></span></div>
   </div>
 </footer>
 
 <div class="dock" id="dock">
-  <a class="btn btn-main" href="/wabi-sabi/cardapio/" data-track="clique_cardapio" data-loc="barra_fixa">Ver cardápio</a>
+  <a class="btn btn-main" href="/wabi-sabi/cardapio/" data-track="clique_cardapio" data-loc="barra_fixa">ver cardápio</a>
   <a class="btn btn-ghost" href="https://wa.me/5551999154298?text=Ol%C3%A1%2C%20Wabi%20Sabi!%20Vim%20pelo%20site." target="_blank" rel="noopener" aria-label="Pedir pelo WhatsApp" data-track="clique_whatsapp" data-loc="barra_fixa"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.3-.5 0-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.3.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.1.1.6-.1 1.3Z"/></svg></a>
 </div>
 
@@ -335,19 +429,19 @@ document.addEventListener("click",function(e){
 // Aberto agora
 (function(){var h=new Date().getHours(),open=h>=9&&h<23;
   document.getElementById("dot").classList.toggle("off",!open);
-  document.getElementById("status").textContent=open?"Aberto agora, até as 23h":"Fechado agora, abrimos às 9h";})();
+  document.getElementById("status").textContent=open?"aberto agora, até as 23h":"fechado agora, abrimos às 9h";})();
 
 // Copiar número
 document.getElementById("copiar").addEventListener("click",function(){
   var b=this,t="(51) 99915-4298";
-  var done=function(){b.textContent="Número copiado";setTimeout(function(){b.textContent="Copiar número"},1800)};
-  if(navigator.clipboard)navigator.clipboard.writeText(t).then(done).catch(function(){selectFone()});else selectFone();
-  function selectFone(){var r=document.createRange();r.selectNodeContents(document.getElementById("fone"));var s=getSelection();s.removeAllRanges();s.addRange(r)}
+  function done(){b.textContent="número copiado";setTimeout(function(){b.textContent="copiar número"},1800)}
+  function sel(){var r=document.createRange();r.selectNodeContents(document.getElementById("fone"));var s=getSelection();s.removeAllRanges();s.addRange(r)}
+  if(navigator.clipboard)navigator.clipboard.writeText(t).then(done).catch(sel);else sel();
 });
 
-// Topo com linha ao rolar e barra fixa no celular
+// Topo ganha fundo ao rolar; barra fixa no celular
 (function(){var top=document.getElementById("top"),dock=document.getElementById("dock"),ticking=false;
-  function upd(){var y=scrollY;top.classList.toggle("scrolled",y>8);dock.classList.toggle("on",y>innerHeight*.7);ticking=false}
+  function upd(){var y=scrollY;top.classList.toggle("scrolled",y>40);dock.classList.toggle("on",y>innerHeight*.8);ticking=false}
   addEventListener("scroll",function(){if(!ticking){ticking=true;requestAnimationFrame(upd)}},{passive:true});upd();})();
 
 // Entrada suave das imagens
