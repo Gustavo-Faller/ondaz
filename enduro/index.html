@@ -587,28 +587,35 @@ const catName=k=>CATS.find(x=>x[0]===k)[1];
 function render(){
   list=P.filter(p=>cat==="todos"||p.cat===cat);
   const tr=$("#track");
-  tr.innerHTML=list.map((p,i)=>`<button class="hang" data-i="${i}" style="animation-delay:${i*50}ms" aria-label="Ver ${p.name}">${pic(p)}<span class="label"><small>${catName(p.cat)}</small>${p.name}<em>Ver detalhes +</em></span></button>`).join("");
-  tr.scrollLeft=0;$("#dots").innerHTML=list.map((p,i)=>`<button data-i="${i}" aria-label="Ir para ${p.name}"></button>`).join("");setTimeout(focusC,30);
+  const K=list.length>1?5:1;
+  tr.innerHTML=Array.from({length:K},(_,c)=>list.map((p,i)=>`<button class="hang" data-i="${i}" data-a="${c*list.length+i}"${c===2||K===1?"":' tabindex="-1"'} aria-label="Ver ${p.name}">${pic(p)}<span class="label"><small>${catName(p.cat)}</small>${p.name}<em>Ver detalhes +</em></span></button>`).join("")).join("");
+  act=-1;jumpTo(K>1?2*list.length:0);tr._s0=tr.scrollLeft;$("#dots").innerHTML=list.map((p,i)=>`<button data-i="${i}" aria-label="Ir para ${p.name}"></button>`).join("");setTimeout(focusC,30);
 }
 /* arrastar a arara */
 const tr=$("#track");let sx=0,sl=0,down=false,moved=false;
 tr.addEventListener("pointerdown",e=>{if(e.pointerType!=="mouse")return;down=true;moved=false;sx=e.clientX;sl=tr.scrollLeft});
 addEventListener("pointermove",e=>{if(!down)return;const dx=e.clientX-sx;if(Math.abs(dx)>6){moved=true;tr.classList.add("drag")}if(moved)tr.scrollLeft=sl-dx});
-addEventListener("pointerup",()=>{if(!down)return;down=false;tr.classList.remove("drag")});
+addEventListener("pointerup",()=>{if(!down)return;down=false;tr.classList.remove("drag");clearTimeout(settle);settle=setTimeout(wrap,400)});
 tr.addEventListener("click",e=>{if(moved){moved=false;return}const b=e.target.closest(".hang");if(!b)return;
   if(b.classList.contains("on"))openPv(+b.dataset.i);else b.scrollIntoView({inline:"center",block:"nearest",behavior:"smooth"})});
-let act=-1,raf=0;
+let act=-1,raf=0,settle=0;
+const N=()=>list.length,HS=()=>tr.querySelectorAll(".hang");
+const pitch=()=>{const h=HS();return h.length>1?h[1].offsetLeft-h[0].offsetLeft:0};
+const centerOf=a=>{const h=HS()[a];return h?h.offsetLeft+h.offsetWidth/2-tr.clientWidth/2:0};
+function jumpTo(a){tr.style.scrollBehavior="auto";tr.scrollLeft=centerOf(a);tr.style.scrollBehavior="";act=-1;focusC()}
+function wrap(){if(down||HS().length<=N())return;const n=N(),c=Math.floor(act/n);if(c===2)return;
+  tr.style.scrollBehavior="auto";tr.style.scrollSnapType="none";tr.scrollLeft+=(2-c)*n*pitch();tr.style.scrollBehavior="";requestAnimationFrame(()=>{tr.style.scrollSnapType="";act=-1;focusC()})}
 function focusC(){const hs=[...tr.querySelectorAll(".hang")];if(!hs.length)return;const mid=tr.getBoundingClientRect().left+tr.clientWidth/2;
   let bi=0,bd=1e9;hs.forEach((h,i)=>{const r=h.getBoundingClientRect(),d=Math.abs(r.left+r.width/2-mid);if(d<bd){bd=d;bi=i}});
-  if(bi===act&&hs[bi].classList.contains("on"))return;act=bi;hs.forEach((h,i)=>h.classList.toggle("on",i===bi));
-  document.querySelectorAll("#dots button").forEach((d,i)=>d.classList.toggle("on",i===bi));
-  $("#rackInfo").textContent=`${String(bi+1).padStart(2,"0")} de ${String(hs.length).padStart(2,"0")} peças`;}
+  if(bi===act&&hs[bi].classList.contains("on"))return;act=bi;const it=bi%N();hs.forEach((h,i)=>h.classList.toggle("on",i===bi));
+  document.querySelectorAll("#dots button").forEach((d,i)=>d.classList.toggle("on",i===it));
+  $("#rackInfo").textContent=`${String(it+1).padStart(2,"0")} de ${String(N()).padStart(2,"0")} peças`;}
 let touched=false;
-tr.addEventListener("scroll",()=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(focusC);if(!touched&&tr.scrollLeft>20){touched=true;setTimeout(()=>$("#hint").classList.add("hide"),400)}},{passive:true});
-$("#dots").onclick=e=>{const b=e.target.closest("button");if(b)tr.querySelectorAll(".hang")[+b.dataset.i].scrollIntoView({inline:"center",block:"nearest",behavior:"smooth"})};
-addEventListener("resize",()=>{act=-1;focusC()});
+tr.addEventListener("scroll",()=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(focusC);clearTimeout(settle);settle=setTimeout(wrap,160);if(!touched&&Math.abs(tr.scrollLeft-(tr._s0??tr.scrollLeft))>20){touched=true;setTimeout(()=>$("#hint").classList.add("hide"),400)}},{passive:true});
+$("#dots").onclick=e=>{const b=e.target.closest("button");if(b)HS()[Math.floor(act/N())*N()+(+b.dataset.i)]?.scrollIntoView({inline:"center",block:"nearest",behavior:"smooth"})};
+addEventListener("resize",()=>{const it=Math.max(act,0)%N();jumpTo(HS().length>N()?2*N()+it:it)});
 const step=()=>innerWidth<600?184:224;
-const go=d=>{const hs=tr.querySelectorAll(".hang");const i=Math.max(0,Math.min(hs.length-1,act+d));if(hs[i]){act=i;hs.forEach((h,j)=>h.classList.toggle("on",j===i));hs[i].scrollIntoView({inline:"center",block:"nearest",behavior:"smooth"})}};
+const go=d=>{const hs=tr.querySelectorAll(".hang");const i=Math.max(0,Math.min(hs.length-1,act+d));setTimeout(wrap,600);if(hs[i]){act=i;hs.forEach((h,j)=>h.classList.toggle("on",j===i));hs[i].scrollIntoView({inline:"center",block:"nearest",behavior:"smooth"})}};
 $("#prev").onclick=()=>go(-1);$("#next").onclick=()=>go(1);
 
 /* ficha */
@@ -625,7 +632,7 @@ function openPv(i){cur=(i+list.length)%list.length;const p=list[cur];pc=p.colors
   $("#pvN").textContent=`${String(cur+1).padStart(2,"0")} / ${String(list.length).padStart(2,"0")}`;
   $("#pvQty").value=10;const a=$("#pvAdd");a.textContent="Adicionar ao orçamento";delete a.dataset.done;
   paintPv();$("#pv").classList.add("open");$("#pvClose").focus();
-  tr.querySelectorAll(".hang")[cur]?.scrollIntoView({inline:"center",block:"nearest"});
+  HS()[Math.floor(Math.max(act,0)/N())*N()+cur]?.scrollIntoView({inline:"center",block:"nearest"});
 }
 const closePv=()=>$("#pv").classList.remove("open");
 $("#pvClose").onclick=closePv;$("#pv").onclick=e=>{if(e.target.id==="pv")closePv()};
