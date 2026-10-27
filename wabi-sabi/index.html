@@ -26,7 +26,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://assets.olaclick.app" crossorigin>
-<link rel="preload" as="image" href="https://assets.olaclick.app/companies/products/images/800/96ea05de-0019-4f6c-9428-74253e00fe6b.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="/wabi-sabi/capa.jpg" fetchpriority="high">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Tenor+Sans&display=swap">
 
 <!-- Rastreamento: cole aqui o código do Google Analytics 4 (gtag.js) e/ou do Meta Pixel.
@@ -44,13 +44,15 @@
   "logo": "https://ondazstudio.vercel.app/wabi-sabi/logo.webp",
   "image": [
     "https://ondazstudio.vercel.app/wabi-sabi/og.jpg",
-    "https://assets.olaclick.app/companies/products/images/800/96ea05de-0019-4f6c-9428-74253e00fe6b.jpg",
+    "https://ondazstudio.vercel.app/wabi-sabi/capa.jpg",
+    "https://ondazstudio.vercel.app/wabi-sabi/combinado.jpg",
     "https://assets.olaclick.app/companies/products/images/800/98b16114-c216-4737-9b38-a23ad6f5706b.JPG"
   ],
   "telephone": "+55 51 99915-4298",
   "servesCuisine": ["Japonesa", "Sushi"],
   "priceRange": "$$",
   "hasMenu": "https://ondazstudio.vercel.app/wabi-sabi/cardapio/",
+  "founder": [{"@type":"Person","name":"Matheus Amaral Eckel"},{"@type":"Person","name":"Luana Klein Coelho"}],
   "openingHoursSpecification": [{
     "@type": "OpeningHoursSpecification",
     "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
@@ -125,7 +127,7 @@ p{margin:0}
 
 /* capa */
 .hero{position:relative;min-height:min(100svh,900px);display:flex;align-items:flex-end;isolation:isolate;overflow:hidden}
-.hero > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;animation:settle 14s ease-out both}
+.hero > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%;z-index:-2;animation:settle 14s ease-out both}
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(to top,var(--ink) 4%,rgba(10,10,10,.72) 42%,rgba(10,10,10,.35) 75%,rgba(10,10,10,.6))}
 @keyframes settle{from{transform:scale(1.1)}to{transform:scale(1)}}
 .hero .wrap{width:100%;padding-block:120px 44px;display:grid;gap:22px}
@@ -148,6 +150,10 @@ section{padding-block:clamp(80px,12vw,150px)}
 .split .txt{display:grid;gap:24px;justify-items:start}
 .split figure{margin:0;aspect-ratio:4/5;overflow:hidden;border-radius:2px}
 .split figure img{width:100%;height:100%;object-fit:cover}
+.owners{position:relative}
+.owners img{object-position:50% 30%}
+.owners figcaption{position:absolute;left:16px;bottom:14px;font-size:12px;letter-spacing:.14em;text-transform:lowercase;color:#f4f4f1;text-shadow:0 1px 10px rgba(0,0,0,.85)}
+.owners::after{content:"";position:absolute;inset:auto 0 0;height:30%;background:linear-gradient(to top,rgba(10,10,10,.6),transparent);pointer-events:none}
 @media (min-width:880px){.split{grid-template-columns:1.05fr .95fr}}
 
 /* a cozinha */
@@ -262,7 +268,7 @@ footer{border-top:1px solid var(--line);padding-block:56px calc(40px + env(safe-
 
 <main id="inicio">
   <section class="hero" style="padding:0" aria-labelledby="titulo">
-    <img src="https://assets.olaclick.app/companies/products/images/800/96ea05de-0019-4f6c-9428-74253e00fe6b.jpg" alt="" width="800" height="800" fetchpriority="high" decoding="async">
+    <img src="/wabi-sabi/capa.jpg" alt="" width="750" height="500" fetchpriority="high" decoding="async">
     <div class="wrap">
       <span class="label">wabi sabi · culinária japonesa · delivery e retirada</span>
       <h1 id="titulo">a beleza do simples</h1>
@@ -285,9 +291,10 @@ footer{border-top:1px solid var(--line);padding-block:56px calc(40px + env(safe-
         <h2 id="rest-t">feito com calma</h2>
         <p class="body"><strong style="color:var(--washi);font-weight:400">Wabi-sabi</strong> é uma ideia japonesa: encontrar beleza no que é simples, natural e feito sem pressa. É assim que pensamos a nossa cozinha.</p>
         <p class="body">Peixe fresco, arroz no ponto e combinações que respeitam o sabor de cada ingrediente. Do sashimi mais puro às criações da casa, cada peça é montada para ser lembrada.</p>
+        <p class="body">À frente da casa estão <strong style="color:var(--washi);font-weight:400">Matheus Amaral Eckel</strong> e <strong style="color:var(--washi);font-weight:400">Luana Klein Coelho</strong>, que cuidam de cada detalhe, da cozinha ao atendimento.</p>
         <a class="link" href="#cozinha">conhecer a cozinha →</a>
       </div>
-      <figure><img class="rv" src="https://assets.olaclick.app/companies/products/images/800/e22d610c-a26a-4e54-a9ab-1ba897f4a963.jpeg" alt="Tartar de salmão trufado com ovas de tobiko e gema de codorna" width="800" height="1000" loading="lazy" decoding="async"></figure>
+      <figure class="owners"><img class="rv" src="/wabi-sabi/proprietarios.jpg" alt="Matheus Amaral Eckel e Luana Klein Coelho, proprietários da Wabi Sabi, com o filho" width="750" height="744" loading="lazy" decoding="async"><figcaption>Matheus e Luana, proprietários</figcaption></figure>
     </div>
   </section>
 
@@ -295,7 +302,7 @@ footer{border-top:1px solid var(--line);padding-block:56px calc(40px + env(safe-
     <div class="strip">
       <figure><img class="rv" src="https://assets.olaclick.app/companies/products/images/800/98b16114-c216-4737-9b38-a23ad6f5706b.JPG" alt="Festival individual com entrada, peças variadas e espumante" width="800" height="1066" loading="lazy" decoding="async"><figcaption>festival</figcaption></figure>
       <figure><img class="rv" src="https://assets.olaclick.app/companies/products/images/800/22340357-8ca2-4746-9394-5014b3bb08f9.JPG" alt="Temaki dos Deuses" width="800" height="1066" loading="lazy" decoding="async"><figcaption>temakis</figcaption></figure>
-      <figure><img class="rv" src="https://assets.olaclick.app/companies/products/images/800/dcf9526c-e1a8-41f2-a46e-d21922b5866c.png" alt="Combinado Saisei com 54 peças" width="800" height="1066" loading="lazy" decoding="async"><figcaption>combinados</figcaption></figure>
+      <figure><img class="rv" src="/wabi-sabi/combinado.jpg" alt="Combinado com sashimi em flor, uramakis, hossomakis e niguiris" width="750" height="672" loading="lazy" decoding="async"><figcaption>combinados</figcaption></figure>
       <figure><img class="rv" src="https://assets.olaclick.app/companies/products/images/800/e5fefabb-98ca-4bbf-8958-e300f2e8780a.JPG" alt="Risoto de camarão" width="800" height="1066" loading="lazy" decoding="async"><figcaption>pratos quentes</figcaption></figure>
     </div>
     <div class="wrap">
