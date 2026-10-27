@@ -43,7 +43,8 @@
   "slogan": "Experiência japonesa autêntica em cada detalhe",
   "address": {"@type":"PostalAddress","streetAddress":"Rua Isidoro Neves, 605","addressLocality":"Cachoeira do Sul","addressRegion":"RS","addressCountry":"BR"},
   "areaServed": "Cachoeira do Sul",
-  "hasMap": "https://www.google.com/maps/search/?api=1&query=Wabi+Sabi+Culin%C3%A1ria+Japonesa+Rua+Isidoro+Neves+605+Soares+Cachoeira+do+Sul+RS",
+  "hasMap": "https://maps.google.com/?cid=14262425391143085681",
+  "sameAs": ["https://www.instagram.com/wabisabi.culinariajaponesa/"],
   "url": "https://ondazstudio.vercel.app/wabi-sabi/",
   "logo": "https://ondazstudio.vercel.app/wabi-sabi/logo.webp",
   "image": [
@@ -230,6 +231,18 @@ section{padding-block:clamp(80px,12vw,150px)}
 .order figure{margin:0;aspect-ratio:4/5;overflow:hidden;border-radius:2px}
 .order figure img{width:100%;height:100%;object-fit:cover}
 
+/* avaliações */
+.score{display:flex;align-items:center;gap:16px;text-decoration:none}
+.score strong{font-family:var(--f-display);font-weight:500;font-size:clamp(64px,9vw,96px);line-height:.9}
+.score span{font-size:12.5px;letter-spacing:.06em;color:var(--mist);line-height:1.5}
+.st{color:#d9b45a;letter-spacing:.18em;font-size:13px}
+.revs{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+@media (min-width:720px){.revs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:1040px){.revs{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.rev{margin:0;background:var(--band);padding:30px 26px;display:flex;flex-direction:column;gap:16px}
+.rev blockquote{margin:0;font-family:var(--f-display);font-style:italic;font-size:21px;line-height:1.35;flex:1}
+.rev figcaption{font-size:12px;letter-spacing:.08em;color:var(--mist)}
+
 /* rodapé */
 footer{border-top:1px solid var(--line);padding-block:56px calc(40px + env(safe-area-inset-bottom,0px));color:var(--mist);font-size:13px}
 .fgrid{display:grid;gap:36px}
@@ -376,7 +389,7 @@ footer{border-top:1px solid var(--line);padding-block:56px calc(40px + env(safe-
       <div class="qs">
         <details open><summary>Como faço meu pedido?</summary><p>Escolha os pratos no <a href="/wabi-sabi/cardapio/" data-track="clique_cardapio" data-loc="faq">cardápio on-line</a> e envie sua mensagem pelo WhatsApp (51) 99915-4298. A equipe confirma o pedido, a taxa de entrega e o tempo de preparo.</p></details>
         <details><summary>Vocês fazem delivery?</summary><p>Sim. Além do restaurante, atendemos por delivery e por retirada. A taxa de entrega é informada pelo WhatsApp, de acordo com o seu endereço.</p></details>
-        <details><summary>Onde fica o restaurante?</summary><p>Na Rua Isidoro Neves, 605, bairro Soares, em Cachoeira do Sul (RS). <a href="https://www.google.com/maps/search/?api=1&amp;query=Wabi+Sabi+Culin%C3%A1ria+Japonesa+Rua+Isidoro+Neves+605+Soares+Cachoeira+do+Sul+RS" target="_blank" rel="noopener" data-track="clique_mapa" data-loc="faq">Ver no mapa</a>.</p></details>
+        <details><summary>Onde fica o restaurante?</summary><p>Na Rua Isidoro Neves, 605, bairro Soares, em Cachoeira do Sul (RS). <a href="https://maps.google.com/?cid=14262425391143085681" target="_blank" rel="noopener" data-track="clique_mapa" data-loc="faq">Ver no mapa</a>.</p></details>
         <details><summary>Qual é o horário de atendimento?</summary><p>De segunda a sábado. Delivery e retirada das 18h às 23h, e o restaurante abre às 19h. Aos domingos estamos fechados.</p></details>
         <details><summary>Como funciona o festival individual?</summary><p>É uma sequência completa para uma pessoa, com entrada, prato principal com niguiris, gunkans, uramakis e hossomakis, e sobremesa, por R$ 149,90.</p></details>
         <details><summary>Tem opções sem arroz ou vegetarianas?</summary><p>Sim. Temos a linha sem arroz, a linha vegetariana com shimeji e a linha burguês, enrolada no salmão em vez da alga.</p></details>
@@ -393,9 +406,10 @@ footer{border-top:1px solid var(--line);padding-block:56px calc(40px + env(safe-
         <p class="body">Venha ao restaurante ou peça pelo WhatsApp. Entregamos em Cachoeira do Sul ou você retira, como preferir.</p>
         <div class="facts">
           <div><span>whatsapp</span><strong id="fone">(51) 99915-4298</strong><button class="copy" type="button" id="copiar">copiar número</button></div>
-          <div><span>endereço</span><strong>Rua Isidoro Neves, 605<br>Soares, Cachoeira do Sul</strong><a class="copy" href="https://www.google.com/maps/search/?api=1&amp;query=Wabi+Sabi+Culin%C3%A1ria+Japonesa+Rua+Isidoro+Neves+605+Soares+Cachoeira+do+Sul+RS" target="_blank" rel="noopener" data-track="clique_mapa" data-loc="visite">como chegar</a></div>
+          <div><span>endereço</span><strong>Rua Isidoro Neves, 605<br>Soares, Cachoeira do Sul</strong><a class="copy" href="https://maps.google.com/?cid=14262425391143085681" target="_blank" rel="noopener" data-track="clique_mapa" data-loc="visite">como chegar</a></div>
           <div><span>restaurante</span><strong>seg a sáb, a partir das 19h</strong></div>
           <div><span>delivery e retirada</span><strong>seg a sáb, 18h às 23h</strong></div>
+          <div><span>instagram</span><strong><a href="https://www.instagram.com/wabisabi.culinariajaponesa/" target="_blank" rel="noopener" data-track="clique_instagram" data-loc="visite" style="text-decoration:none">@wabisabi.culinariajaponesa</a></strong></div>
         </div>
         <div class="ctas">
           <a class="btn btn-main" href="https://wa.me/5551999154298?text=Ol%C3%A1%2C%20Wabi%20Sabi!%20Quero%20fazer%20um%20pedido." target="_blank" rel="noopener" data-track="clique_whatsapp" data-loc="peca">pedir agora</a>
@@ -403,6 +417,23 @@ footer{border-top:1px solid var(--line);padding-block:56px calc(40px + env(safe-
         </div>
       </div>
       <figure><img class="rv" src="https://assets.olaclick.app/companies/products/images/800/0d5c30a4-26dc-4186-affa-47ad7fd47152.jpeg" alt="Sequência individual servida" width="800" height="1000" loading="lazy" decoding="async"></figure>
+    </div>
+  </section>
+  <section class="band" id="avaliacoes" aria-labelledby="aval-t">
+    <div class="wrap">
+      <div class="head">
+        <div><span class="label">avaliações</span><h2 id="aval-t">quem provou, recomenda</h2></div>
+        <a class="score" href="https://maps.google.com/?cid=14262425391143085681" target="_blank" rel="noopener" data-track="clique_avaliacoes" data-loc="avaliacoes"><strong>4,8</strong><span><span class="st" aria-hidden="true">★★★★★</span><br>171 avaliações no Google</span></a>
+      </div>
+      <div class="revs">
+        <figure class="rev"><span class="st" aria-label="5 estrelas">★★★★★</span><blockquote>Melhor experiência que já tive na culinária japonesa na cidade! Salmão super fresco, muito saboroso e apresentação impecável. Ambiente muito lindo, acolhedor e ótimo atendimento!</blockquote><figcaption>Gabriel C. · avaliação no Google</figcaption></figure>
+        <figure class="rev"><span class="st" aria-label="5 estrelas">★★★★★</span><blockquote>Na minha opinião, sem dúvidas o melhor sushi da cidade. A qualidade, o sabor e a apresentação do produto, simplesmente perfeito! Já sou cliente há anos, e não troco.</blockquote><figcaption>Lutiane P. · avaliação no Google</figcaption></figure>
+        <figure class="rev"><span class="st" aria-label="5 estrelas">★★★★★</span><blockquote>Salmão fresquinho, pratos bem elaborados. Ambiente acolhedor, lareira sensacional. Atendimento espetacular, certamente é o meu favorito quando venho à cidade.</blockquote><figcaption>José Otávio S. · avaliação no Google</figcaption></figure>
+        <figure class="rev"><span class="st" aria-label="5 estrelas">★★★★★</span><blockquote>Sushi super saboroso, qualidade impecável, com ótima variedade. Pedimos festival livre individual por indicação da atendente… Vale cada centavo pago.</blockquote><figcaption>Adriano R. · avaliação no Google</figcaption></figure>
+        <figure class="rev"><span class="st" aria-label="5 estrelas">★★★★★</span><blockquote>A comida muito boa, várias opções de sushi! O atendimento não deixou a desejar em nenhum momento, e o local bem limpo e organizado. Recomendo!</blockquote><figcaption>Heloísa B. · avaliação no Google</figcaption></figure>
+        <figure class="rev"><span class="st" aria-label="5 estrelas">★★★★★</span><blockquote>Já somos clientes. O melhor hot sushi que já provei. Combo G delícia.</blockquote><figcaption>Andrea B. · avaliação no Google</figcaption></figure>
+      </div>
+      <div style="margin-top:34px"><a class="link" href="https://maps.google.com/?cid=14262425391143085681" target="_blank" rel="noopener" data-track="clique_avaliacoes" data-loc="avaliacoes_todas">ver todas as avaliações no Google →</a></div>
     </div>
   </section>
 </main>
@@ -414,8 +445,8 @@ footer{border-top:1px solid var(--line);padding-block:56px calc(40px + env(safe-
         <img src="/wabi-sabi/logo.webp" width="720" height="408" alt="Wabi Sabi Culinária Japonesa" loading="lazy" decoding="async">
         <p>a beleza do simples, peça por peça.</p>
       </div>
-      <div><h3>navegue</h3><nav aria-label="Rodapé"><a href="/wabi-sabi/cardapio/" data-track="clique_cardapio" data-loc="rodape">cardápio</a><a href="#restaurante">restaurante</a><a href="#pratos">pratos</a><a href="#perguntas">perguntas</a></nav></div>
-      <div><h3>contato</h3><div class="ct"><a href="https://wa.me/5551999154298" target="_blank" rel="noopener" data-track="clique_whatsapp" data-loc="rodape">whatsapp (51) 99915-4298</a><a href="https://www.google.com/maps/search/?api=1&amp;query=Wabi+Sabi+Culin%C3%A1ria+Japonesa+Rua+Isidoro+Neves+605+Soares+Cachoeira+do+Sul+RS" target="_blank" rel="noopener" data-track="clique_mapa" data-loc="rodape">Rua Isidoro Neves, 605, Soares<br>Cachoeira do Sul, RS</a><span>seg a sáb · delivery 18h às 23h<br>restaurante a partir das 19h</span></div></div>
+      <div><h3>navegue</h3><nav aria-label="Rodapé"><a href="/wabi-sabi/cardapio/" data-track="clique_cardapio" data-loc="rodape">cardápio</a><a href="#restaurante">restaurante</a><a href="#pratos">pratos</a><a href="#perguntas">perguntas</a><a href="#avaliacoes">avaliações</a></nav></div>
+      <div><h3>contato</h3><div class="ct"><a href="https://wa.me/5551999154298" target="_blank" rel="noopener" data-track="clique_whatsapp" data-loc="rodape">whatsapp (51) 99915-4298</a><a href="https://maps.google.com/?cid=14262425391143085681" target="_blank" rel="noopener" data-track="clique_mapa" data-loc="rodape">Rua Isidoro Neves, 605, Soares<br>Cachoeira do Sul, RS</a><a href="https://www.instagram.com/wabisabi.culinariajaponesa/" target="_blank" rel="noopener" data-track="clique_instagram" data-loc="rodape">instagram @wabisabi.culinariajaponesa</a><span>seg a sáb · delivery 18h às 23h<br>restaurante a partir das 19h</span></div></div>
     </div>
     <div class="fbase"><span>© 2026 Wabi Sabi Culinária Japonesa</span><span>site por <a href="https://ondazstudio.vercel.app/" target="_blank" rel="noopener">Ondaz Studio</a></span></div>
   </div>
