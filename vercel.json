@@ -1,7 +1,51 @@
 {
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://assets.olaclick.app https://upload.wikimedia.org; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        },
+        {
+          "key": "Cross-Origin-Opener-Policy",
+          "value": "same-origin"
+        }
+      ]
+    }
+  ],
   "rewrites": [
-    { "source": "/wabi-sabi/capa-hd-1100.jpg", "destination": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=1100&q=80&fm=jpg&fit=crop" },
-    { "source": "/wabi-sabi/capa-hd-1800.jpg", "destination": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=1800&q=80&fm=jpg&fit=crop" },
-    { "source": "/wabi-sabi/capa-hd-2600.jpg", "destination": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=2600&q=78&fm=jpg&fit=crop" }
+    {
+      "source": "/wabi-sabi/capa-hd-1100.jpg",
+      "destination": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=1100&q=80&fm=jpg&fit=crop"
+    },
+    {
+      "source": "/wabi-sabi/capa-hd-1800.jpg",
+      "destination": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=1800&q=80&fm=jpg&fit=crop"
+    },
+    {
+      "source": "/wabi-sabi/capa-hd-2600.jpg",
+      "destination": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=2600&q=78&fm=jpg&fit=crop"
+    }
   ]
 }
