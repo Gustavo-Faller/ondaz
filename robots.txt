@@ -1,4 +1,2 @@
 User-agent: *
 Allow: /
-
-Sitemap: https://ondazstudio.vercel.app/wabi-sabi/sitemap.xml

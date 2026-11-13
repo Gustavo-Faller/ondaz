@@ -33,19 +33,5 @@
         }
       ]
     }
-  ],
-  "rewrites": [
-    {
-      "source": "/wabi-sabi/capa-hd-1100.jpg",
-      "destination": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=1100&q=80&fm=jpg&fit=crop"
-    },
-    {
-      "source": "/wabi-sabi/capa-hd-1800.jpg",
-      "destination": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=1800&q=80&fm=jpg&fit=crop"
-    },
-    {
-      "source": "/wabi-sabi/capa-hd-2600.jpg",
-      "destination": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=2600&q=78&fm=jpg&fit=crop"
-    }
   ]
 }
